@@ -1,1 +1,67 @@
-/* You can add global styles to this file, and also import other style files */
+$primary: #004F4F;
+$background-color: #101414;
+$forground-color: #E0E3E2;
+$forground-primary: #00FBFB;
+$panel-color: #1E1E1E;
+$background-disabled: #292D2D;
+$forground-disabled: #6E7272;
+
+html, body { 
+    height: 100%; 
+    background-color: $background-color; 
+    color: $forground-color;
+}
+
+body {
+    margin: 0;
+    font-family: "Varela Round", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.sbi-login-container{
+    display: flex;
+    height: 100%;
+}
+
+.sbi-login-card{
+    padding: 20px;
+    display: block;
+    border: 1px solid $panel-color;
+    background-color: $panel-color;
+    width: 400px;
+    margin: auto;
+    border-radius: 25px;
+}
+
+.sbi-login-button{
+    border: none;
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    border: 1px solid $primary;
+    border-radius: 25px;
+    background-color: $primary;
+    color: $forground-primary;
+}
+
+.sbi-login-button:hover{
+    background-color: $panel-color;
+    border: 1px solid $forground-primary;
+}
+
+.sbi-input{
+    text-decoration: none;
+    border: none;
+    background-color: $panel-color;
+    padding: 0;
+    color: $forground-color;
+    display: block;
+    margin-bottom: 5px;
+    border-bottom: 1px solid $primary;
+    width: 100%;
+}
+
+.sbi-input:focus{
+    outline: none;
+}

@@ -1,0 +1,13 @@
+<div class="sbi-login-container">
+    <div class="sbi-login-card">
+        <h1>{{title}}</h1>
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <input class="sbi-input" type="email" formControlName="username" placeholder="Email">
+            <br/>
+            <input class="sbi-input" type="password" formControlName="password" placeholder="Password">
+            <br/>
+            <button type="submit" class="sbi-login-button">Login</button>
+        </form>
+        <span style="color: red">{{error}}</span>
+    </div>
+</div>
