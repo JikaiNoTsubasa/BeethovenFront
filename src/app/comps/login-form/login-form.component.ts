@@ -23,6 +23,7 @@ export class LoginFormComponent {
   }
   @Input() error: string | null = null;
   @Input() title: string | null = null;
+  @Input() loading: boolean = false;
 
   @Output() submitEM = new EventEmitter();
 }
