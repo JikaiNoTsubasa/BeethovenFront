@@ -1,8 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { LoginFormComponent } from "../../comps/login-form/login-form.component";
-import { BeeService } from '../../services/BeeService';
-import { ResponseLogin } from '../../models/database/dto/ResponseLogin';
-import { log } from 'console';
 import { AuthService } from '../../auth/auth.service';
 import { Router } from '@angular/router';
 import { FadeIn } from '../../animations';

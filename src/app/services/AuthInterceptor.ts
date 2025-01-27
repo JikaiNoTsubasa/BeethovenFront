@@ -3,6 +3,9 @@ import { Observable } from "rxjs";
 import { ResponseLogin } from "../models/database/dto/ResponseLogin";
 
 export function provideAuthInterceptor(req: HttpRequest<any>, next: HttpHandlerFn): Observable<HttpEvent<any>> {
+    if (sessionStorage.getItem('authUser') === null) {
+        return next(req);
+    }
     const authUser = JSON.parse(sessionStorage.getItem('authUser') ?? '{}') as ResponseLogin;
     if (authUser.user.id) {
         req = req.clone({

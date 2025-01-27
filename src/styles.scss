@@ -15,6 +15,7 @@ $color-d: darken($primary, 5%);
 $color-l: lighten($primary, 7.5%);
 
 $fg-primary: #F6A821;
+$fg-primary-l: lighten(#F6A821, 20%);
 $bg-primary: #F6A821;
 $bg-primary-d: darken($bg-primary, 5%);
 $bg-menu: #2A2D35;
@@ -42,6 +43,17 @@ body {
 a {
     text-decoration: none;
     cursor: pointer;
+}
+
+.sbi-link{
+    cursor: pointer;
+    text-decoration: none;
+    color: $fg-primary;
+    transition-duration: 0.5s;
+}
+
+.sbi-link:hover{
+    color: $fg-primary-l;
 }
 
 .sbi-login-container{
@@ -73,22 +85,6 @@ a {
 .sbi-login-button:hover{
     background-color: $panel-color;
     border: 1px solid $forground-primary;
-}
-
-.sbi-input{
-    text-decoration: none;
-    border: none;
-    background-color: $panel-color;
-    padding: 0;
-    color: $forground-color;
-    display: block;
-    margin-bottom: 5px;
-    border-bottom: 1px solid $bg-primary;
-    width: 100%;
-}
-
-.sbi-input:focus{
-    outline: none;
 }
 
 .sbi-main-container{
@@ -206,4 +202,36 @@ a {
     padding: 5px 10px;
     cursor: pointer;
     
+}
+
+.sbi-table{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.sbi-table tr {
+    border-bottom: 1px solid $bg-panel-l;
+}
+
+.sbi-table th {
+    text-align: left;
+}
+
+.sbi-input{
+    text-decoration: none;
+    border: 0;
+    background-color: $bg-panel-l;
+    padding: 0 10px 0 10px;
+    color: $fg-main;
+    display: block;
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    line-height: 50px;
+}
+
+.sbi-input:focus{
+    outline: none;
+    border-left: 1px solid $bg-primary;
 }

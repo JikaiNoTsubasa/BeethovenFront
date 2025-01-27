@@ -1,14 +1,17 @@
+import { Product } from "./Product";
 import { User } from "./User";
 
 export interface Ticket{
     id: number;
     name: string;
     description: string;
-    assignedTo: User;
-    reviewedBy: User;
+    assignedTo: User | null;
+    reviewedBy: User | null;
     status: TicketStatus;
     createdAt: Date;
     updatedAt: Date;
+    product: Product | null;
+    gitlabTicketId: number | null;
 }
 
 export interface TicketStatus{
