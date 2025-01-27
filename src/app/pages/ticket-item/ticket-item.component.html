@@ -4,31 +4,41 @@
     <div class="sbi-center-main">
         <h1>Tickets</h1>
         <div class="grid">
-            <div class="col-10">
+            <div class="col-8">
                 <div *ngIf="ticket" class="sbi-card">
                     <h2>{{ticket.name}}</h2>
                     <div style="margin-top: 20px;">
-                        <app-avatar [avatar]="ticket.assignedTo?.avatar ?? null" [name]="ticket.assignedTo?.lastname + ' ' + ticket.assignedTo?.firstname" [avatarSize]="50"></app-avatar>
-                        <br>
                         {{ticket.description}}
                     </div>
 
                 </div>
             </div>
 
-            <div class="col-2">
+            <div class="col-4">
                 <div *ngIf="ticket" class="sbi-card">
-                    <h2>Actions</h2>
+                    <h2>Users</h2>
                     <div style="margin-top: 20px;">
-                        Action<br>
-                        Action<br>
-                        Action<br>
-                        Action<br>
-                        Action<br>
+                        Assignee:<br>
+                        <span *ngIf="!ticket.assignedTo">No Reviewer</span>
+                        <app-avatar *ngIf="ticket.assignedTo"
+                            [avatar]="ticket.assignedTo.avatar" 
+                            [name]="ticket.assignedTo.firstname + ' ' + ticket.assignedTo.lastname" 
+                            [avatarSize]="50">
+                        </app-avatar>
+                        <br><br>
+                        Reviewer:<br>
+                        <span *ngIf="!ticket.reviewedBy">No Reviewer</span>
+                        <app-avatar *ngIf="ticket.reviewedBy"
+                            [avatar]="ticket.reviewedBy.avatar" 
+                            [name]="ticket.reviewedBy.firstname + ' ' + ticket.reviewedBy.lastname" 
+                            [avatarSize]="50">
+                        </app-avatar>
                     </div>
 
                 </div>
             </div>
+
+            
         </div>
         <div class="grid">
             <div class="col-12">

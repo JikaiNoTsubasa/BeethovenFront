@@ -27,7 +27,11 @@
                                 <td><a class="sbi-link" href="/ticket/{{ticket.id}}">{{ticket.name}}</a></td>
                                 <td>{{ticket.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
                                 <td>
-                                    <app-avatar [name]="ticket.assignedTo?.firstname + ' ' + ticket.assignedTo?.lastname" [avatar]="ticket.assignedTo?.avatar ?? ''"></app-avatar>
+                                    <app-avatar 
+                                        [name]="ticket.assignedTo?.firstname + ' ' + ticket.assignedTo?.lastname" 
+                                        [avatar]="ticket.assignedTo?.avatar ?? null"
+                                        [avatarSize]="25">
+                                    </app-avatar>
                                 </td>
                                 <td>{{ticket.product?.name}}</td>
                                 <td><a *ngIf="ticket.product != null" class="sbi-link" href="{{ticket.product.codeBaseLink}}/{{ticket.gitlabTicketId}}" target="_blank">#{{ticket.gitlabTicketId}}</a></td>
