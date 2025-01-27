@@ -1,8 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ResponseLogin } from '../models/database/dto/ResponseLogin';
 import { User } from '../models/database/User';
+import { ApiResponse } from '../models/database/ApiResponse';
+import { Ticket } from '../models/database/Ticket';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +25,16 @@ export class BeeService {
   //#region User
   getUser(id: number): Observable<User> {
     return this.http.get<User>(`${this.host}/api/user/${id}`);
+  }
+  //#endregion
+
+  //#region Ticket
+  getTicketsFull(): Observable<HttpResponse<Ticket[]>> {
+    return this.http.get<Ticket[]>(`${this.host}/api/tickets`, {observe: 'response'});
+  }
+
+  getTickets(): Observable<Ticket[]> {
+    return this.http.get<Ticket[]>(`${this.host}/api/tickets`);
   }
   //#endregion
 }

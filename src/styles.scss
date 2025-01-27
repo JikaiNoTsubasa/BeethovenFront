@@ -14,6 +14,7 @@ $forground-disabled: #6E7272;
 $color-d: darken($primary, 5%);
 $color-l: lighten($primary, 7.5%);
 
+$fg-primary: #F6A821;
 $bg-primary: #F6A821;
 $bg-primary-d: darken($bg-primary, 5%);
 $bg-menu: #2A2D35;
@@ -174,7 +175,7 @@ a {
 }
 
 .sbi-card{
-    margin: 0 20px 20px 0;
+    
     padding: 20px;
     background-color: $bg-panel;
 }
@@ -185,4 +186,24 @@ a {
     font-size: 14px;
     font-weight: 400;
     border-bottom: 1px solid $bg-panel-l;
+}
+
+.sbi-btn-normal{
+    border: 1px solid darken($fg-main, 50%);
+    background-color: $bg-panel;
+    color: darken($fg-main, 50%);
+    font-size: 12px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+
+.sbi-btn-normal:hover{
+    border: 1px solid $bg-primary;
+    background-color: $bg-panel;
+    color: $fg-primary;
+    font-size: 12px;
+    padding: 5px 10px;
+    cursor: pointer;
+    
 }
