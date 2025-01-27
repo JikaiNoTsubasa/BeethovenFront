@@ -5,13 +5,16 @@ import { BeeService } from '../../services/BeeService';
 import { TablePagination } from '../../models/database/TablePagination';
 import { Ticket } from '../../models/database/Ticket';
 import { CommonModule } from '@angular/common';
+import { FadeIn } from '../../animations';
+import { AvatarComponent } from "../../comps/avatar/avatar.component";
 
 @Component({
   selector: 'app-ticket',
   standalone: true,
-  imports: [MainMenuComponent, CommonModule],
+  imports: [MainMenuComponent, CommonModule, AvatarComponent],
   templateUrl: './ticket.component.html',
-  styleUrl: './ticket.component.scss'
+  styleUrl: './ticket.component.scss',
+  animations: [FadeIn(1000, false)]
 })
 export class TicketComponent {
   beeService = inject(BeeService);

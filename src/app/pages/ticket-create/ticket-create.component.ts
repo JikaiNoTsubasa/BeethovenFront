@@ -45,15 +45,12 @@ export class TicketCreateComponent {
         }
       });
       this.beeService.getProducts().subscribe({
-        next: products => {this.products = products; console.log(this.products);},
+        next: products => {this.products = products;},
         error: err => console.log(err)
       });
     }
-
-
   
     onSubmit(){
-      console.log(this.form.value);
       if (this.form.invalid) {
         return;
       }

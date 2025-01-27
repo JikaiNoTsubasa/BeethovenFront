@@ -42,6 +42,10 @@ export class BeeService {
     return this.http.get<Ticket[]>(`${this.host}/api/tickets`);
   }
 
+  getTicket(id: number): Observable<Ticket> {
+    return this.http.get<Ticket>(`${this.host}/api/ticket/${id}`);
+  }
+
   createTicket(
       name: string, 
       description: string, 

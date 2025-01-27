@@ -17,6 +17,9 @@ export const routes: Routes = [
         path: 'tickets', component: TicketComponent, canActivate: [authGuard]
     },
     {
+        path: 'ticket/:id', component: TicketItemComponent, canActivate: [authGuard]
+    },
+    {
         path: 'create-ticket', component: TicketCreateComponent, canActivate: [authGuard]
     },
     {

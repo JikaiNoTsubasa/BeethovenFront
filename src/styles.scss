@@ -59,6 +59,7 @@ a {
 .sbi-login-container{
     display: flex;
     height: 100%;
+    background-color: $bg-main;
 }
 
 .sbi-login-card{
@@ -117,6 +118,19 @@ a {
     vertical-align: middle;
     border: 1px solid $fg-menu;
 }
+
+.sbi-avatar{
+    position: relative;
+}
+
+.sbi-avatar img{
+    position: relative;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin: 0 10px 0 0;
+    vertical-align: middle;
+    border: 1px solid $fg-menu;}
 
 .sbi-left-menu ul {
     list-style: none;

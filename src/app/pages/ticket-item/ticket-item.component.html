@@ -4,50 +4,38 @@
     <div class="sbi-center-main">
         <h1>Tickets</h1>
         <div class="grid">
-            <div class="col-6">
-                <div class="sbi-card">
-                    <h2>Create Ticket</h2>
+            <div class="col-10">
+                <div *ngIf="ticket" class="sbi-card">
+                    <h2>{{ticket.name}}</h2>
                     <div style="margin-top: 20px;">
-                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                            <span style="color: red;">{{error}}</span>
-                            <span>Ticket Name</span><br>
-                            <input class="sbi-input" type="text" placeholder="Name" formControlName="ticketName">
-                            <br>
-                            <span>Description</span><br>
-                            <textarea class="sbi-input" placeholder="Description" style="resize: none; height: 100px;" formControlName="ticketDesc"></textarea>
-                            <br>
-                            <span>Assign To</span><br>
-                            <select class="sbi-input" formControlName="assignTo">
-                                <option [value]="null">None</option>
-                                <option *ngFor="let assi of users" [value]="assi.id">{{assi.firstname}} {{assi.lastname}}</option>
-                            </select>
-                            <br>
-                            <span>Reviewed By</span><br>
-                            <select class="sbi-input" formControlName="reviewedBy">
-                                <option [value]="null">None</option>
-                                <option *ngFor="let assi of users" [value]="assi.id">{{assi.firstname}} {{assi.lastname}}</option>
-                            </select>
-                            <br>
-                            <span>Product</span><br>
-                            <select class="sbi-input" formControlName="product">
-                                <option [value]="null">None</option>
-                                <option *ngFor="let product of products" [value]="product.id">{{product.name}} [{{product.customer?.name}}]</option>
-                            </select>
-                            <!--
-                            <input class="sbi-input" list="assignee" name="assignTo"><br>
-                            <datalist id="assignee">
-                                <option *ngFor="let assi of users" [value]="assi.firstname">{{assi.firstname}} {{assi.lastname}}</option>
-                            </datalist>
-                            -->
-                            <br>
-                            <span>Status</span><br>
-                            <input class="sbi-input" type="text" placeholder="Status" value="New" disabled><br>
-                            <br>
-                            <div>
-                                <input class="sbi-btn-normal" type="submit" value="Create">
-                            </div>
+                        <app-avatar [avatar]="ticket.assignedTo?.avatar ?? null" [name]="ticket.assignedTo?.lastname + ' ' + ticket.assignedTo?.firstname" [avatarSize]="50"></app-avatar>
+                        <br>
+                        {{ticket.description}}
+                    </div>
 
-                        </form>
+                </div>
+            </div>
+
+            <div class="col-2">
+                <div *ngIf="ticket" class="sbi-card">
+                    <h2>Actions</h2>
+                    <div style="margin-top: 20px;">
+                        Action<br>
+                        Action<br>
+                        Action<br>
+                        Action<br>
+                        Action<br>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col-12">
+                <div *ngIf="ticket" class="sbi-card">
+                    <h2>Activity</h2>
+                    <div style="margin-top: 20px;">
+                        Comment
                     </div>
 
                 </div>
