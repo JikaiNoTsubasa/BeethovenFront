@@ -10,11 +10,10 @@ import { Ticket } from '../../models/database/Ticket';
 import { AvatarComponent } from "../../comps/avatar/avatar.component";
 
 @Component({
-  selector: 'app-ticket-item',
-  standalone: true,
-  imports: [MainMenuComponent, CommonModule, ReactiveFormsModule, AvatarComponent],
-  templateUrl: './ticket-item.component.html',
-  styleUrl: './ticket-item.component.scss'
+    selector: 'app-ticket-item',
+    imports: [MainMenuComponent, CommonModule, ReactiveFormsModule, AvatarComponent],
+    templateUrl: './ticket-item.component.html',
+    styleUrl: './ticket-item.component.scss'
 })
 export class TicketItemComponent {
 

@@ -5,12 +5,12 @@ import { Router } from '@angular/router';
 import { FadeIn } from '../../animations';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [LoginFormComponent],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
-  animations: [FadeIn(1000, false)]
+    selector: 'app-login',
+    standalone: true,
+    imports: [LoginFormComponent],
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.scss',
+    animations: [FadeIn(1000, false)]
 })
 export class LoginComponent {
   router = inject(Router);

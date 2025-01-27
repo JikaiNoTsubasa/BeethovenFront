@@ -9,12 +9,12 @@ import { FadeIn } from '../../animations';
 import { AvatarComponent } from "../../comps/avatar/avatar.component";
 
 @Component({
-  selector: 'app-ticket',
-  standalone: true,
-  imports: [MainMenuComponent, CommonModule, AvatarComponent],
-  templateUrl: './ticket.component.html',
-  styleUrl: './ticket.component.scss',
-  animations: [FadeIn(1000, false)]
+    selector: 'app-ticket',
+    standalone: true,
+    imports: [MainMenuComponent, CommonModule, AvatarComponent],
+    templateUrl: './ticket.component.html',
+    styleUrl: './ticket.component.scss',
+    animations: [FadeIn(1000, false)]
 })
 export class TicketComponent {
   beeService = inject(BeeService);

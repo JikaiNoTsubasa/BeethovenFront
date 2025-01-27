@@ -5,12 +5,12 @@ import { AuthService } from '../../auth/auth.service';
 import { FadeIn } from '../../animations';
 
 @Component({
-  selector: 'app-main-menu',
-  standalone: true,
-  imports: [],
-  templateUrl: './main-menu.component.html',
-  styleUrl: './main-menu.component.scss',
-  animations: [FadeIn(1000, false)]
+    selector: 'app-main-menu',
+    standalone: true,
+    imports: [],
+    templateUrl: './main-menu.component.html',
+    styleUrl: './main-menu.component.scss',
+    animations: [FadeIn(1000, false)]
 })
 export class MainMenuComponent {
 

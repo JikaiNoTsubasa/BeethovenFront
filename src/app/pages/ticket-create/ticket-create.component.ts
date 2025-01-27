@@ -8,11 +8,11 @@ import { Product } from '../../models/database/Product';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-ticket-create',
-  standalone: true,
-  imports: [MainMenuComponent, CommonModule, ReactiveFormsModule],
-  templateUrl: './ticket-create.component.html',
-  styleUrl: './ticket-create.component.scss'
+    selector: 'app-ticket-create',
+    standalone: true,
+    imports: [MainMenuComponent, CommonModule, ReactiveFormsModule],
+    templateUrl: './ticket-create.component.html',
+    styleUrl: './ticket-create.component.scss'
 })
 export class TicketCreateComponent {
 
