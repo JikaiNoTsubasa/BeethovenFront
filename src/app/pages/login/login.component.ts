@@ -5,13 +5,15 @@ import { ResponseLogin } from '../../models/database/dto/ResponseLogin';
 import { log } from 'console';
 import { AuthService } from '../../auth/auth.service';
 import { Router } from '@angular/router';
+import { FadeIn } from '../../animations';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [LoginFormComponent],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
+  animations: [FadeIn(1000, false)]
 })
 export class LoginComponent {
   router = inject(Router);

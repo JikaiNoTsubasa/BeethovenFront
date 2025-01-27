@@ -1,15 +1,34 @@
 $primary: #004F4F;
+/*
 $background-color: #101414;
-$forground-color: #E0E3E2;
+$background-color-l: lighten($background-color, 5%);
+*/
+$background-color: #f5f5f5;
+$background-color-l: #ddd;
+$forground-color: #404040;
+$forground-color-menu: #E0E3E2;
 $forground-primary: #00FBFB;
 $panel-color: #1E1E1E;
 $background-disabled: #292D2D;
 $forground-disabled: #6E7272;
+$color-d: darken($primary, 5%);
+$color-l: lighten($primary, 7.5%);
+
+$bg-primary: #F6A821;
+$bg-primary-d: darken($bg-primary, 5%);
+$bg-menu: #2A2D35;
+$bg-menu-l: lighten($bg-menu, 5%);
+$fg-menu: #fff;
+$fg-menu-d: darken($fg-menu, 10%);
+$bg-main: #363842;
+$fg-main: #fff;
+$bg-panel: #2D3038;
+$bg-panel-l: lighten($bg-panel, 5%);
 
 html, body { 
     height: 100%; 
     background-color: $background-color; 
-    color: $forground-color;
+    color: $forground-color-menu;
 }
 
 body {
@@ -17,6 +36,11 @@ body {
     font-family: "Varela Round", sans-serif;
     font-weight: 400;
     font-style: normal;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .sbi-login-container{
@@ -39,9 +63,9 @@ body {
     width: 100%;
     height: 30px;
     text-align: center;
-    border: 1px solid $primary;
+    border: 1px solid $bg-primary;
     border-radius: 25px;
-    background-color: $primary;
+    background-color: $bg-primary;
     color: $forground-primary;
 }
 
@@ -58,10 +82,107 @@ body {
     color: $forground-color;
     display: block;
     margin-bottom: 5px;
-    border-bottom: 1px solid $primary;
+    border-bottom: 1px solid $bg-primary;
     width: 100%;
 }
 
 .sbi-input:focus{
     outline: none;
+}
+
+.sbi-main-container{
+    display: flex;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.sbi-left-menu{
+    width: 200px;
+    background-color: $bg-menu;
+    height: 100%;
+}
+
+.sbi-left-menu header{
+    position: relative;
+    height: 60px;
+    padding: 20px 0 0 15px;
+    font-size: 16px;
+    color: $fg-menu;
+    background: $bg-primary;
+}
+
+.sbi-left-menu header img{
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    margin: 0 10px 0 0;
+    vertical-align: middle;
+    border: 1px solid $fg-menu;
+}
+
+.sbi-left-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sbi-left-menu ul span {
+    display: block;
+    padding: 15px;
+    color: $fg-menu-d;
+    text-transform: uppercase;
+    border-bottom: 1px solid $bg-menu-l;
+}
+
+.sbi-left-menu ul a {
+    position: relative;
+    display: block;
+    padding: 15px 15px 17px 50px;
+    color: $fg-menu;
+    border-bottom: 1px solid $bg-menu-l;
+}
+
+.sbi-left-menu ul a:hover,
+.sbi-left-menu ul a:active {
+    background: $bg-menu-l;
+}
+
+.sbi-left-menu ul a i {
+    position: absolute;
+    top: 15px;
+    left: 18px;
+    font-size: 16px;
+}
+
+.sbi-center-main{
+    flex: 1;
+    padding: 25px;
+    background-color: $bg-main;
+    color: $fg-main;
+}
+
+.sbi-center-main h1{
+    height: 80px;
+    margin: -25px -25px 25px -25px;
+    padding: 0 25px;
+    line-height: 76px;
+    font-size: 24px;
+    font-weight: 400;
+    background: $bg-menu;
+    color: $fg-menu;
+}
+
+.sbi-card{
+    margin: 0 20px 20px 0;
+    padding: 20px;
+    background-color: $bg-panel;
+}
+
+.sbi-card h2{
+    margin: -20px -20px 20px -20px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 400;
+    border-bottom: 1px solid $bg-panel-l;
 }
