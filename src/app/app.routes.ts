@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { TicketComponent } from './pages/ticket/ticket.component';
 import { TicketItemComponent } from './pages/ticket-item/ticket-item.component';
 import { TicketCreateComponent } from './pages/ticket-create/ticket-create.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 export const routes: Routes = [
     {
@@ -15,6 +16,9 @@ export const routes: Routes = [
     },
     {
         path: 'tickets', component: TicketComponent, canActivate: [authGuard]
+    },
+    {
+        path: 'settings', component: SettingsComponent, canActivate: [authGuard]
     },
     {
         path: 'ticket/:id', component: TicketItemComponent, canActivate: [authGuard]

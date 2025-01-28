@@ -12,9 +12,17 @@ export interface Ticket{
     updatedAt: Date;
     product: Product | null;
     gitlabTicketId: number | null;
+    activities: TicketActivity[];
 }
 
 export interface TicketStatus{
     id: number;
     name: string;
+}
+
+export interface TicketActivity{
+    id: number;
+    message: string;
+    createdAt: Date;
+    user: User;
 }

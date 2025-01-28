@@ -43,9 +43,18 @@
         <div class="grid">
             <div class="col-12">
                 <div *ngIf="ticket" class="sbi-card">
-                    <h2>Activity</h2>
+                    <h2>Activities</h2>
                     <div style="margin-top: 20px;">
-                        Comment
+                        <div *ngFor="let activity of ticket.activities">
+                            <app-avatar 
+                                [avatar]="activity.user.avatar" 
+                                [name]="activity.user.firstname + ' ' + activity.user.lastname" 
+                                [avatarSize]="25">
+                            </app-avatar>
+                            <div style="margin-left: 20px;">
+                                {{activity.message}}
+                            </div>
+                        </div>
                     </div>
 
                 </div>
