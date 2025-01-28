@@ -10,7 +10,8 @@
                     <div>
                         <a href="create-ticket" class="sbi-btn-normal">New Ticket</a>
                     </div>
-                    <div style="margin-top: 20px;">
+                    <span *ngIf="loading">Loading...</span>
+                    <div *ngIf="tickets && tickets.length > 0" style="margin-top: 20px;">
                         <table class="sbi-table">
                             <tr>
                                 <th>ID</th>

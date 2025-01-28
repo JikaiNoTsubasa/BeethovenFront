@@ -18,6 +18,7 @@ import { AvatarComponent } from "../../comps/avatar/avatar.component";
 })
 export class TicketComponent {
   beeService = inject(BeeService);
+  loading: boolean = false;
 
   meta: TablePagination = new TablePagination();
   tickets: Ticket[] = [];
@@ -28,6 +29,7 @@ export class TicketComponent {
   }
 
   refreshTickets(){
+    this.loading = true;
     this.beeService.getTicketsFull().subscribe(
       res => {
         this.meta.page = +(res.headers.get('page') ?? 1);
@@ -36,6 +38,7 @@ export class TicketComponent {
         this.meta.total = +(res.headers.get('total') ?? 1);
 
         this.tickets = res.body ?? [];
+        this.loading = false;
       }
     );
     }
