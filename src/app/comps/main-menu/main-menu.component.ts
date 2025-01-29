@@ -24,9 +24,7 @@ export class MainMenuComponent {
   }
 
   refreshUser(){
-    let id = this.authService.getAuthUser().id;
-
-    this.beeService.getUser(id).subscribe(u => this.user = u);
+    this.beeService.getMyUser().subscribe(u => this.user = u);
   }
 
   logoutUser(){

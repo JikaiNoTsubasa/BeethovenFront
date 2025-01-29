@@ -28,6 +28,10 @@ export class BeeService {
     return this.http.get<User[]>(`${this.host}/api/users`);
   }
 
+  getMyUser(): Observable<User> {
+    return this.http.get<User>(`${this.host}/api/myuser`);
+  }
+
   getUser(id: number): Observable<User> {
     return this.http.get<User>(`${this.host}/api/user/${id}`);
   }

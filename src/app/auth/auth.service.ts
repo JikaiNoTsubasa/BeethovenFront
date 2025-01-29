@@ -24,16 +24,15 @@ export class AuthService {
   }
 
   private storeUser(user: ResponseLogin) {
-    sessionStorage.setItem('authUser', JSON.stringify(user));
+    sessionStorage.setItem('authUser', user.accessToken);
   }
 
   isLoggedIn(){
     return sessionStorage.getItem('authUser') !== null;
   }
 
-  getAuthUser(): User{
-    let rep : ResponseLogin | null = JSON.parse(sessionStorage.getItem('authUser')!) as ResponseLogin;
-    return rep.user;
+  getToken(): string{
+    return sessionStorage.getItem('authUser') ?? '';
   }
 
   logout(){
