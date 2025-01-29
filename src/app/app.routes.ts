@@ -15,17 +15,30 @@ export const routes: Routes = [
         path: 'login', component: LoginComponent
     },
     {
-        path: 'tickets', component: TicketComponent, canActivate: [authGuard]
+        path: 'tickets',
+        component: TicketComponent,
+        canActivate: [authGuard],
+        title: 'Beethoven - Tickets',
+        data: { title: 'Tickets' },
+    },
+    {
+        path: 'ticket/new', 
+        component: TicketCreateComponent, 
+        canActivate: [authGuard],
+        title: 'Beethoven - New Ticket',
+        data: { title: 'New' },
+    },
+    { 
+        path: 'ticket/:id', 
+        component: TicketItemComponent,
+        canActivate: [authGuard],
+        title: 'Beethoven - Ticket Item',
+        data: { title: '' },
     },
     {
         path: 'settings', component: SettingsComponent, canActivate: [authGuard]
     },
-    {
-        path: 'ticket/:id', component: TicketItemComponent, canActivate: [authGuard]
-    },
-    {
-        path: 'create-ticket', component: TicketCreateComponent, canActivate: [authGuard]
-    },
+    
     {
         path: 'main', component: MainComponent, canActivate: [authGuard]
     },

@@ -9,7 +9,6 @@
                     <h2>Create Ticket</h2>
                     <div style="margin-top: 20px;">
                         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                            
                             <span>Ticket Name*</span><br>
                             <input class="sbi-input" type="text" placeholder="Name" formControlName="ticketName" [ngClass]="{'ng-invalid': !form.controls['ticketName'].valid}">
                             <br>

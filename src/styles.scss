@@ -229,6 +229,13 @@ a {
 
 .sbi-table th {
     text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.sbi-table td {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .sbi-input{
@@ -247,4 +254,37 @@ a {
 .sbi-input:focus{
     outline: none;
     border-left: 1px solid $bg-primary;
+}
+
+.sbi-breadcrumb{
+    background: none;
+    display: block;
+    margin-bottom: 20px;
+    font-size: 0.8em;
+    a,
+    span {
+        color: $fg-main;
+        transition-duration: 1s;
+    }
+    a:hover,
+    span:hover {
+        cursor: pointer;
+        color: $fg-primary;
+        text-decoration: none;
+    }
+    li {
+        list-style: none;
+        float: left;
+        margin: 5px;
+    }
+    li:last-child {
+        margin-right: 20px;
+    }
+    li::after {
+        content: " > ";
+        color: $fg-main;
+    }
+    li:last-child::after {
+        content: "";
+    }
 }

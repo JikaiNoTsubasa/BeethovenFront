@@ -23,49 +23,18 @@ export class TicketItemComponent {
   route = inject(ActivatedRoute);
 
   ticket: Ticket | null = null;
-  users: User[] = [];
-  products: Product[] = []; 
   error = '';
 
-  form: FormGroup = new FormGroup({
-    ticketName: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    ticketDesc: new FormControl(''),
-    assignTo: new FormControl(''),
-    reviewedBy: new FormControl(''),
-    product: new FormControl(''),
-    gitlabId: new FormControl(''),
-  });
 
   ngOnInit() {
     this.refreshData();
   }
 
   refreshData() {
-    this.beeService.getUsers().subscribe({
-      next: users => this.users = users,
-      error: err => console.log(err),
-      complete: () => {
-      }
-    });
-    this.beeService.getProducts().subscribe({
-      next: products => {this.products = products;},
-      error: err => console.log(err)
-    });
-
     let id = this.route.snapshot.paramMap.get('id');
     this.beeService.getTicket(parseInt(id ?? '0')).subscribe(res => {
       this.ticket = res;
-      this.form.value.ticketName = this.ticket.name;
-      this.form.value.ticketDesc = this.ticket.description;
-      this.form.value.assignTo = this.ticket.assignedTo?.id;
-      this.form.value.reviewedBy = this.ticket.reviewedBy?.id;
-      this.form.value.product = this.ticket.product?.id;
-      this.form.value.gitlabId = this.ticket.gitlabTicketId;
-  });
-  }
-
-  onSubmit() {
-
+    });
   }
 
 }
