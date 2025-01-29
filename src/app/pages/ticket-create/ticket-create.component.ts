@@ -6,6 +6,8 @@ import { User } from '../../models/database/User';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Product } from '../../models/database/Product';
 import { Router } from '@angular/router';
+import { Priority } from '../../models/database/Priority';
+import { TicketType } from '../../models/database/TicketType';
 
 @Component({
     selector: 'app-ticket-create',
@@ -22,6 +24,8 @@ export class TicketCreateComponent {
   
     users: User[] = [];
     products: Product[] = [];
+    priorities: Priority[] = [];
+    types: TicketType[] = [];
     error = '';
   
     form: FormGroup = new FormGroup({
@@ -31,10 +35,13 @@ export class TicketCreateComponent {
         reviewedBy: new FormControl(''),
         product: new FormControl(''),
         gitlabId: new FormControl(''),
+        typeId: new FormControl('', [Validators.required]),
+        priorityId: new FormControl('', [Validators.required]),
       });
   
     ngOnInit() {
       this.refreshData();
+
     }
   
     refreshData() {
@@ -48,6 +55,20 @@ export class TicketCreateComponent {
         next: products => {this.products = products;},
         error: err => console.log(err)
       });
+      this.beeService.getPriorities().subscribe({
+        next: priorities => {
+          this.priorities = priorities;
+          this.form.controls['priorityId'].setValue(this.priorities[2].id);
+        },
+        error: err => console.log(err)
+      });
+      this.beeService.getTicketTypes().subscribe({
+        next: types => {
+          this.types = types
+          this.form.controls['typeId'].setValue(this.types[0].id);
+        },
+        error: err => console.log(err)
+      })
     }
   
     onSubmit(){
@@ -60,7 +81,9 @@ export class TicketCreateComponent {
         this.form.value.assignTo, 
         this.form.value.reviewedBy, 
         this.form.value.product,
-        this.form.value.gitlabId
+        this.form.value.gitlabId,
+        this.form.value.typeId,
+        this.form.value.priorityId
       ).subscribe({
         next: ticket => this.router.navigate(['/tickets']),
         error: err => this.error = err.message

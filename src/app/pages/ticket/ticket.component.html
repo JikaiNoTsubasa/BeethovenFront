@@ -17,6 +17,8 @@
                                 <th>ID</th>
                                 <th>Status</th>
                                 <th>Name</th>
+                                <th>Priority</th>
+                                <th>Type</th>
                                 <th>Created At</th>
                                 <th>Assigned To</th>
                                 <th>Product</th>
@@ -26,13 +28,16 @@
                                 <td>{{ticket.id}}</td>
                                 <td>{{ticket.status.name}}</td>
                                 <td><a class="sbi-link" href="/ticket/{{ticket.id}}">{{ticket.name}}</a></td>
+                                <td>{{ticket.priority.name}}</td>
+                                <td>{{ticket.type.name}}</td>
                                 <td>{{ticket.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
                                 <td>
-                                    <app-avatar 
-                                        [name]="ticket.assignedTo?.firstname + ' ' + ticket.assignedTo?.lastname" 
-                                        [avatar]="ticket.assignedTo?.avatar ?? null"
+                                    <app-avatar *ngIf="ticket.assignedTo"
+                                        [name]="ticket.assignedTo.firstname + ' ' + ticket.assignedTo.lastname" 
+                                        [avatar]="ticket.assignedTo.avatar"
                                         [avatarSize]="25">
                                     </app-avatar>
+                                    <span *ngIf="!ticket.assignedTo">Unassigned</span>
                                 </td>
                                 <td>{{ticket.product?.name}}</td>
                                 <td><a *ngIf="ticket.product != null" class="sbi-link" href="{{ticket.product.codeBaseLink}}/{{ticket.gitlabTicketId}}" target="_blank">#{{ticket.gitlabTicketId}}</a></td>

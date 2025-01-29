@@ -9,45 +9,78 @@
                     <h2>Create Ticket</h2>
                     <div style="margin-top: 20px;">
                         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                            <span>Ticket Name*</span><br>
-                            <input class="sbi-input" type="text" placeholder="Name" formControlName="ticketName" [ngClass]="{'ng-invalid': !form.controls['ticketName'].valid}">
-                            <br>
-                            <span>Description</span><br>
-                            <textarea class="sbi-input" placeholder="Description" style="resize: none; height: 100px;" formControlName="ticketDesc"></textarea>
-                            <br>
-                            <span>Assign To</span><br>
-                            <select class="sbi-input" formControlName="assignTo">
-                                <option [value]="null">None</option>
-                                <option *ngFor="let assi of users" [value]="assi.id">{{assi.firstname}} {{assi.lastname}}</option>
-                            </select>
-                            <br>
-                            <span>Reviewed By</span><br>
-                            <select class="sbi-input" formControlName="reviewedBy">
-                                <option [value]="null">None</option>
-                                <option *ngFor="let assi of users" [value]="assi.id">{{assi.firstname}} {{assi.lastname}}</option>
-                            </select>
-                            <br>
-                            <span>Product</span><br>
-                            <select class="sbi-input" formControlName="product">
-                                <option [value]="null">None</option>
-                                <option *ngFor="let product of products" [value]="product.id">{{product.name}} [{{product.customer?.name}}]</option>
-                            </select>
-                            <!--
-                            <input class="sbi-input" list="assignee" name="assignTo"><br>
-                            <datalist id="assignee">
-                                <option *ngFor="let assi of users" [value]="assi.firstname">{{assi.firstname}} {{assi.lastname}}</option>
-                            </datalist>
-                            -->
-                            <br>
-                            <span>GitLab Ticket ID</span><br>
-                            <input class="sbi-input" type="number" formControlName="gitlabId">
-                            <br>
-                            <span>Status</span><br>
-                            <input class="sbi-input" type="text" placeholder="Status" value="New" disabled><br>
-                            <br>
-                            <div>
-                                <input class="sbi-btn-normal" type="submit" value="Create">
-                            </div>
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td colspan="2">
+                                        <span>Ticket Name<span style="color: red;">*</span></span><br>
+                                        <input class="sbi-input" type="text" placeholder="Name" formControlName="ticketName" [ngClass]="{'ng-invalid': !form.controls['ticketName'].valid}">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <span>Description</span><br>
+                                        <textarea class="sbi-input" placeholder="Description" style="resize: none; height: 100px;" formControlName="ticketDesc"></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <span>Assign To</span><br>
+                                        <select class="sbi-input" formControlName="assignTo">
+                                            <option [value]="null">None</option>
+                                            <option *ngFor="let assi of users" [value]="assi.id">{{assi.firstname}} {{assi.lastname}}</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <span>Reviewed By</span><br>
+                                        <select class="sbi-input" formControlName="reviewedBy">
+                                            <option [value]="null">None</option>
+                                            <option *ngFor="let assi of users" [value]="assi.id">{{assi.firstname}} {{assi.lastname}}</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <span>Product</span><br>
+                                        <select class="sbi-input" formControlName="product">
+                                            <option [value]="null">None</option>
+                                            <option *ngFor="let product of products" [value]="product.id">{{product.name}} [{{product.customer?.name}}]</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <span>GitLab Ticket ID</span><br>
+                                        <input class="sbi-input" type="number" formControlName="gitlabId">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Priority<span style="color: red;">*</span></span><br>
+                                        <select class="sbi-input" formControlName="priorityId">
+                                            <option *ngFor="let prio of priorities" [ngValue]="prio.id">{{prio.id}} - {{prio.name}}</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <span>Type<span style="color: red;">*</span></span><br>
+                                        <select class="sbi-input" formControlName="typeId">
+                                            <option *ngFor="let type of types" [value]="type.id">{{type.name}}</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <span>Status</span><br>
+                                        <input class="sbi-input" type="text" placeholder="Status" value="New" disabled><br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <input class="sbi-btn-normal" type="submit" value="Create">
+                                    </td>
+                                </tr>
+                            </table>
                             <span style="color: red;">{{error}}</span>
                         </form>
                     </div>

@@ -1,4 +1,6 @@
+import { Priority } from "./Priority";
 import { Product } from "./Product";
+import { TicketType } from "./TicketType";
 import { User } from "./User";
 
 export interface Ticket{
@@ -13,6 +15,8 @@ export interface Ticket{
     product: Product | null;
     gitlabTicketId: number | null;
     activities: TicketActivity[];
+    type: TicketType;
+    priority: Priority;
 }
 
 export interface TicketStatus{

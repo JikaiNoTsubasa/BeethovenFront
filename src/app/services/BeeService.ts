@@ -6,6 +6,8 @@ import { User } from '../models/database/User';
 import { ApiResponse } from '../models/database/ApiResponse';
 import { Ticket } from '../models/database/Ticket';
 import { Product } from '../models/database/Product';
+import { TicketType } from '../models/database/TicketType';
+import { Priority } from '../models/database/Priority';
 
 @Injectable({
   providedIn: 'root'
@@ -50,13 +52,19 @@ export class BeeService {
     return this.http.get<Ticket>(`${this.host}/api/ticket/${id}`);
   }
 
+  getTicketTypes(): Observable<TicketType[]> {
+    return this.http.get<TicketType[]>(`${this.host}/api/tickettypes`);
+  }
+
   createTicket(
       name: string, 
       description: string, 
       assignedToId: number,
       reviewedById: number,
       productId: number,
-      gitlabId: number
+      gitlabId: number,
+      typeId: number,
+      priorityId: number
     ): Observable<Ticket> {
     let data = new FormData();
     data.append('name', name);
@@ -65,6 +73,8 @@ export class BeeService {
     data.append('productId', productId.toString());
     data.append('reviewedById', reviewedById.toString());
     data.append('gitlabTicketId', gitlabId.toString());
+    data.append('typeId', typeId.toString());
+    data.append('priorityId', priorityId.toString());
     return this.http.post<Ticket>(`${this.host}/api/ticket`, data);
   }
   //#endregion
@@ -72,6 +82,12 @@ export class BeeService {
   //#region Product
   getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.host}/api/products`);
+  }
+  //#endregion
+
+  //#region Priority
+  getPriorities(): Observable<Priority[]> {
+    return this.http.get<Priority[]>(`${this.host}/api/priorities`);
   }
   //#endregion
 }
