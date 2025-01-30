@@ -28,7 +28,7 @@
                                 <td>{{ticket.id}}</td>
                                 <td>{{ticket.status.name}}</td>
                                 <td><a class="sbi-link" href="/ticket/{{ticket.id}}">{{ticket.name}}</a></td>
-                                <td>{{ticket.priority.name}}</td>
+                                <td><span class="prio {{ticket.priority.name | prio }}">{{ticket.priority.name}}</span></td>
                                 <td>{{ticket.type.name}}</td>
                                 <td>{{ticket.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
                                 <td>

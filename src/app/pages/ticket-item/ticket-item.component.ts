@@ -25,7 +25,6 @@ export class TicketItemComponent {
   ticket: Ticket | null = null;
   error = '';
 
-
   ngOnInit() {
     this.refreshData();
   }

@@ -27,6 +27,10 @@ $fg-main: #fff;
 $bg-panel: #2D3038;
 $bg-panel-l: lighten($bg-panel, 5%);
 
+$chip-low: #1BBF89;
+$chip-medium: #F6A821;
+$chip-high: #DB524B;
+
 html, body { 
     height: 100%; 
     background-color: $background-color; 
@@ -285,4 +289,28 @@ a {
     li:last-child::after {
         content: "";
     }
+}
+
+.prio{
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.prio-low
+{
+    background-color: $chip-low;
+    color: $fg-main;
+}
+
+.prio-medium
+{
+    background-color: $chip-medium;
+    color: $fg-main;
+}
+
+.prio-high
+{
+    background-color: $chip-high;
+    color: $fg-main;
 }

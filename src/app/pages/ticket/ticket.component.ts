@@ -1,17 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { MainMenuComponent } from "../../comps/main-menu/main-menu.component";
-import { TableComponent } from "../../comps/table/table.component";
 import { BeeService } from '../../services/BeeService';
 import { TablePagination } from '../../models/database/TablePagination';
 import { Ticket } from '../../models/database/Ticket';
 import { CommonModule } from '@angular/common';
 import { FadeIn } from '../../animations';
 import { AvatarComponent } from "../../comps/avatar/avatar.component";
+import { PrioPipe } from "../../pipes/prio.pipe";
 
 @Component({
     selector: 'app-ticket',
     standalone: true,
-    imports: [MainMenuComponent, CommonModule, AvatarComponent],
+    imports: [MainMenuComponent, CommonModule, AvatarComponent, PrioPipe],
     templateUrl: './ticket.component.html',
     styleUrl: './ticket.component.scss',
     animations: [FadeIn(1000, false)]
