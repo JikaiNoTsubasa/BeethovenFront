@@ -1,11 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { BeeService } from '../../services/BeeService';
+import { Customer } from '../../models/database/Customer';
+import { MainMenuComponent } from "../../comps/main-menu/main-menu.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-customer',
-  imports: [],
+  standalone: true,
+  imports: [MainMenuComponent, CommonModule],
   templateUrl: './customer.component.html',
   styleUrl: './customer.component.scss'
 })
 export class CustomerComponent {
 
+  beeService = inject(BeeService);
+
+  customers: Customer[] | null = null;
+  loading: boolean = true;
+
+  ngOnInit() {
+    this.refreshCustomers();
+  }
+
+  refreshCustomers() {
+    this.beeService.getCustomers().subscribe(res => {
+      this.customers = res;
+      this.loading = false;
+    });
+  }
 }

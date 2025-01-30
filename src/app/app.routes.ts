@@ -6,6 +6,7 @@ import { TicketComponent } from './pages/ticket/ticket.component';
 import { TicketItemComponent } from './pages/ticket-item/ticket-item.component';
 import { TicketCreateComponent } from './pages/ticket-create/ticket-create.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { CustomerComponent } from './pages/customer/customer.component';
 
 export const routes: Routes = [
     {
@@ -34,6 +35,13 @@ export const routes: Routes = [
         canActivate: [authGuard],
         title: 'Beethoven - Ticket Item',
         data: { title: '' },
+    },
+    { 
+        path: 'customers', 
+        component: CustomerComponent,
+        canActivate: [authGuard],
+        title: 'Beethoven - Customers',
+        data: { title: 'Customers' },
     },
     {
         path: 'settings', component: SettingsComponent, canActivate: [authGuard]

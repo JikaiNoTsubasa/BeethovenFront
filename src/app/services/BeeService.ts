@@ -8,6 +8,7 @@ import { Ticket } from '../models/database/Ticket';
 import { Product } from '../models/database/Product';
 import { TicketType } from '../models/database/TicketType';
 import { Priority } from '../models/database/Priority';
+import { Customer } from '../models/database/Customer';
 
 @Injectable({
   providedIn: 'root'
@@ -77,6 +78,13 @@ export class BeeService {
     data.append('priorityId', priorityId.toString());
     return this.http.post<Ticket>(`${this.host}/api/ticket`, data);
   }
+  //#endregion
+
+  //#region Customer
+  getCustomers(): Observable<Customer[]> {
+    return this.http.get<Customer[]>(`${this.host}/api/customers`);
+  }
+
   //#endregion
 
   //#region Product

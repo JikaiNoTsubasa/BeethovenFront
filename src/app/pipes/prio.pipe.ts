@@ -7,7 +7,8 @@ export class PrioPipe implements PipeTransform {
 
   transform(value: string, ...args: any[]): any {
     let colorClass = 'prio-low';
-    switch (value) {
+    let valueLower = value.toLowerCase();
+    switch (valueLower) {
       case 'low':
         colorClass = 'prio-low';
         break;

@@ -1,1 +1,32 @@
-<p>customer works!</p>
+<div class="sbi-main-container">
+    <app-main-menu></app-main-menu>
+
+    <div class="sbi-center-main">
+        <h1>Customers</h1>
+        <div class="grid">
+            <div class="col-12" [@fadeIn]>
+                <div class="sbi-card">
+                    <h2>Customers</h2>
+                    <div>
+                        <a href="customer/new" class="sbi-btn-normal">New Customer</a>
+                    </div>
+                    <span *ngIf="loading">Loading...</span>
+                    <div *ngIf="customers && customers.length > 0" style="margin-top: 20px;">
+                        <table class="sbi-table">
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                            </tr>
+                            <tr *ngFor="let customer of customers">
+                                <td>{{customer.id}}</td>
+                                <td><a class="sbi-link" href="/customer/{{customer.id}}">{{customer.name}}</a></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
