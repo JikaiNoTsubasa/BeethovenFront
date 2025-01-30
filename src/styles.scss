@@ -31,6 +31,8 @@ $chip-low: #1BBF89;
 $chip-medium: #F6A821;
 $chip-high: #DB524B;
 
+$fg-sub: #888888;
+
 html, body { 
     height: 100%; 
     background-color: $background-color; 
@@ -317,4 +319,24 @@ hr.panel{
 {
     background-color: $chip-high;
     color: $fg-main;
+}
+
+.sbi-activity-col1{
+    width:0.1%; 
+    vertical-align: top;
+    white-space: nowrap; 
+    border-right: 1px solid $bg-panel-l;
+    border-top: 1px solid $bg-panel-l;
+    padding-right: 20px;
+}
+
+.sbi-activity-date{
+    font-size: 10px;
+    color: $fg-sub;
+}
+
+.sbi-activity-message{
+    border-top: 1px solid $bg-panel-l;
+    padding-left: 20px;
+    vertical-align: top;
 }

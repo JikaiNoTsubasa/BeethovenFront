@@ -46,19 +46,18 @@
                     <div style="margin-top: 20px;">
                         <table style="width: 100%;">
                             <tr *ngFor="let activity of ticket.activities">
-                                <td style="width:0.1%; white-space: nowrap; border-right: 1px solid #ccc; padding-right: 20px;">
+                                <td class="sbi-activity-col1">
                                     <app-avatar 
                                         [avatar]="activity.user.avatar" 
                                         [name]="activity.user.firstname + ' ' + activity.user.lastname" 
                                         [avatarSize]="50">
                                     </app-avatar><br>
-                                    <span style="font-size: 10px; color: #ddd">
+                                    <span class="sbi-activity-date">
                                         {{activity.createdAt | date: 'dd/MM/yyyy HH:mm'}}
                                     </span>
                                 </td>
-                                <td style="padding-left: 20px;">
-                                    <span>
-                                        {{activity.message}}
+                                <td class="sbi-activity-message">
+                                    <span [innerHTML]="activity.message | descriptionMK">
                                     </span>
                                 </td>
                             </tr>

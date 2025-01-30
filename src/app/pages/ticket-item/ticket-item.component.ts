@@ -34,6 +34,10 @@ export class TicketItemComponent {
     let id = this.route.snapshot.paramMap.get('id');
     this.beeService.getTicket(parseInt(id ?? '0')).subscribe(res => {
       this.ticket = res;
+
+      this.ticket.activities = this.ticket.activities.sort((a: any, b: any) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
     });
   }
 
