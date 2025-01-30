@@ -291,6 +291,10 @@ a {
     }
 }
 
+hr.panel{
+    border: 1px solid $bg-panel-l;
+}
+
 .prio{
     display: inline-block;
     padding: 5px 10px;
