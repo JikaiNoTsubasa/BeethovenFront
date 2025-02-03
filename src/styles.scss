@@ -373,3 +373,15 @@ hr.panel{
     padding-left: 20px;
     vertical-align: top;
 }
+
+.sbi-dash-item{
+    text-align: center;
+    padding: 20px;
+    border: 1px solid $bg-primary;
+}
+
+.sbi-dash-item span{
+    display: block;
+    color: $fg-primary;
+    font-size: 30px;
+}

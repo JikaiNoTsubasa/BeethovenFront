@@ -7,6 +7,7 @@ import { TicketItemComponent } from './pages/ticket-item/ticket-item.component';
 import { TicketCreateComponent } from './pages/ticket-create/ticket-create.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { CustomerComponent } from './pages/customer/customer.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 export const routes: Routes = [
     {
@@ -46,7 +47,9 @@ export const routes: Routes = [
     {
         path: 'settings', component: SettingsComponent, canActivate: [authGuard]
     },
-    
+    {
+        path: 'admin', component: AdminComponent, canActivate: [authGuard]
+    },
     {
         path: 'main', component: MainComponent, canActivate: [authGuard]
     },

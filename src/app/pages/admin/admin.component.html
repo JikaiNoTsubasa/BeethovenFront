@@ -1,0 +1,80 @@
+<div class="sbi-main-container">
+    <app-main-menu></app-main-menu>
+
+    <div class="sbi-center-main">
+        <h1>Admin Dashboard</h1>
+        <div class="grid">
+            <div class="col-12" [@fadeIn]>
+                <div class="sbi-card">
+                    <h2>Management</h2>
+                    
+                    <app-tabs>
+                        <app-tab name="Users">
+                            <div *ngIf="users && users.length > 0">
+                                <table class="sbi-table">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                    </tr>
+                                    <tr *ngFor="let user of users">
+                                        <td>{{user.id}}</td>
+                                        <td>
+                                            <app-avatar [user]="user" [avatarSize]="50"></app-avatar>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </app-tab>
+                        <app-tab name="Tickets">
+                            <div *ngIf="tickets && tickets.length > 0">
+                                <div class="grid">
+                                    <div class="col-3">
+                                        <div class="sbi-dash-item">
+                                            <span>{{tickets.length}}</span>
+                                            Tickets
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="sbi-dash-item">
+                                            <span>{{ticketsAssigned}}</span>
+                                            Assigned
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="sbi-dash-item">
+                                            <span>{{ticketsClosed}}</span>
+                                            On Hold
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="sbi-dash-item">
+                                            <span>{{ticketsClosed}}</span>
+                                            Closed
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="sbi-table">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                    </tr>
+                                    <tr *ngFor="let ticket of tickets">
+                                        <td>{{ticket.id}}</td>
+                                        <td>{{ticket.name}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </app-tab>
+                        <app-tab name="Customers">
+                            <div>
+                                Customer tab
+                            </div>
+                        </app-tab>
+                    </app-tabs>
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
