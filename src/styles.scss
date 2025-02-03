@@ -125,6 +125,8 @@ a {
 
 .sbi-avatar{
     position: relative;
+    display: inline-block;
+    transition-duration: 1s;
 }
 
 .sbi-avatar img{
@@ -135,6 +137,27 @@ a {
     margin: 0 10px 0 0;
     vertical-align: middle;
     /*border: 1px solid $fg-menu;*/
+}
+
+.sbi-avatar-tooltip{
+    visibility: hidden;
+    width: 300px;
+    background-color: $bg-panel;
+    border: 1px solid $bg-panel-l;
+    color: $fg-main;
+    text-align: left;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    font-size: 12px;
+    top: 100%;
+    left: 0px;
+    box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.sbi-avatar:hover .sbi-avatar-tooltip {
+    visibility: visible;
+    opacity: 1;
 }
 
 .sbi-left-menu ul {

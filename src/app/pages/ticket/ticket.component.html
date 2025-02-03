@@ -33,9 +33,10 @@
                                 <td>{{ticket.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
                                 <td>
                                     <app-avatar *ngIf="ticket.assignedTo"
-                                        [name]="ticket.assignedTo.firstname + ' ' + ticket.assignedTo.lastname" 
-                                        [avatar]="ticket.assignedTo.avatar"
-                                        [avatarSize]="25">
+                                        [user]="ticket.assignedTo"
+                                        [avatarSize]="25"
+                                        [showName]="false"
+                                        >
                                     </app-avatar>
                                     <span *ngIf="!ticket.assignedTo">Unassigned</span>
                                 </td>
