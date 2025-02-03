@@ -126,7 +126,6 @@ a {
 .sbi-avatar{
     position: relative;
     display: inline-block;
-    transition-duration: 1s;
 }
 
 .sbi-avatar img{
@@ -156,8 +155,19 @@ a {
 }
 
 .sbi-avatar:hover .sbi-avatar-tooltip {
+    transition-duration: 1s;
     visibility: visible;
     opacity: 1;
+}
+
+.sbi-avatar-tooltip-link{
+    text-decoration: none;
+    color: $fg-primary;
+    cursor: pointer;
+}
+
+.sbi-avatar-tooltip-link:hover{
+    color: $fg-primary-l;
 }
 
 .sbi-left-menu ul {

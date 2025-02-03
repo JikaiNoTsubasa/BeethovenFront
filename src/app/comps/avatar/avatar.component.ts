@@ -21,7 +21,7 @@ export class AvatarComponent {
     if (this.user != null){
       this.name = this.user.firstname + ' ' + this.user.lastname;
       this.avatar = this.user.avatar;
-      this.tooltip = '<span style="font-weight: bold;">[#' + this.user.id + ']</span><br>' + this.user.firstname + ' ' + this.user.lastname + '<br>' + this.user.email + '<br><br><a class="sbi-link" href="/user/"' + this.user.id + '"><i class="fa fa-user"></i> View Profile</a>';
+      this.tooltip = '<span style="font-weight: bold;">[#' + this.user.id + ']</span><br>' + this.user.firstname + ' ' + this.user.lastname + '<br>' + this.user.email + '<br><br><a class="sbi-avatar-tooltip-link" href="/user/' + this.user.id + '"><i class="fa fa-user"></i> View Profile</a>';
     }else{
       if (this.tooltip == null){
         this.tooltip = this.name;
