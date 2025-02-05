@@ -41,7 +41,7 @@
                                     <span *ngIf="!ticket.assignedTo">Unassigned</span>
                                 </td>
                                 <td>{{ticket.product?.name}}</td>
-                                <td><a *ngIf="ticket.product != null" class="sbi-link" href="{{ticket.product.codeBaseLink}}/{{ticket.gitlabTicketId}}" target="_blank">#{{ticket.gitlabTicketId}}</a></td>
+                                <td><a *ngIf="ticket.product != null && ticket.gitlabTicketId != null" class="sbi-link" href="{{ticket.product.codeBaseLink}}/{{ticket.gitlabTicketId}}" target="_blank">#{{ticket.gitlabTicketId}}</a></td>
                             </tr>
                         </table>
                     </div>

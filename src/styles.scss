@@ -1,3 +1,4 @@
+@use "sass:color";
 $primary: #004F4F;
 /*
 $background-color: #101414;
@@ -11,21 +12,21 @@ $forground-primary: #00FBFB;
 $panel-color: #1E1E1E;
 $background-disabled: #292D2D;
 $forground-disabled: #6E7272;
-$color-d: darken($primary, 5%);
-$color-l: lighten($primary, 7.5%);
+$color-d: color.adjust($primary, $lightness: -5%);
+$color-l: color.adjust($primary, $lightness: 7.5%);
 
 $fg-primary: #F6A821;
-$fg-primary-l: lighten(#F6A821, 20%);
+$fg-primary-l: color.adjust(#F6A821, $lightness: 20%);
 $bg-primary: #F6A821;
-$bg-primary-d: darken($bg-primary, 5%);
+$bg-primary-d: color.adjust($bg-primary, $lightness: -5%);
 $bg-menu: #2A2D35;
-$bg-menu-l: lighten($bg-menu, 5%);
+$bg-menu-l: color.adjust($bg-menu, $lightness: 5%);
 $fg-menu: #fff;
-$fg-menu-d: darken($fg-menu, 10%);
+$fg-menu-d: color.adjust($fg-menu, $lightness: -10%);
 $bg-main: #363842;
 $fg-main: #fff;
 $bg-panel: #2D3038;
-$bg-panel-l: lighten($bg-panel, 5%);
+$bg-panel-l: color.adjust($bg-panel, $lightness: 5%);
 
 $chip-low: #1BBF89;
 $chip-medium: #F6A821;
@@ -237,9 +238,9 @@ a {
 }
 
 .sbi-btn-normal{
-    border: 1px solid darken($fg-main, 50%);
+    border: 1px solid color.adjust($fg-main, $lightness: -50%);
     background-color: $bg-panel;
-    color: darken($fg-main, 50%);
+    color: color.adjust($fg-main, $lightness: -50%);
     font-size: 12px;
     padding: 5px 10px;
     cursor: pointer;
