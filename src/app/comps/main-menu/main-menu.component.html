@@ -8,6 +8,11 @@
         <li><a href="main"><i class="fa fa-home"></i> Home</a></li>
         <li><a href="tickets"><i class="fa fa-ticket"></i> Tickets</a></li>
         <li><a href="customers"><i class="fa fa-building"></i> Customers</a></li>
+        <li><a href="messages"><i class="fa fa-comment"></i>
+            <div *ngIf="messages != null && messages.length > 0">Messages ({{messages.length}})</div>
+            <div *ngIf="messages == null || messages.length == 0">Messages</div>
+            </a>
+        </li>
         <li><span>Other</span></li>
         <li><a href="admin"><i class="fa fa-bookmark"></i> Admin</a></li>
         <li><a href="settings"><i class="fa fa-cog"></i> Settings</a></li>

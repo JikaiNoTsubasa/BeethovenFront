@@ -9,6 +9,7 @@ import { Product } from '../models/database/Product';
 import { TicketType } from '../models/database/TicketType';
 import { Priority } from '../models/database/Priority';
 import { Customer } from '../models/database/Customer';
+import { Message } from '../models/database/Message';
 
 @Injectable({
   providedIn: 'root'
@@ -96,6 +97,12 @@ export class BeeService {
   //#region Priority
   getPriorities(): Observable<Priority[]> {
     return this.http.get<Priority[]>(`${this.host}/api/priorities`);
+  }
+  //#endregion
+
+  //#region Messages
+  getMyMessages(): Observable<Message[]> {
+    return this.http.get<Message[]>(`${this.host}/api/mymessages`);
   }
   //#endregion
 }
