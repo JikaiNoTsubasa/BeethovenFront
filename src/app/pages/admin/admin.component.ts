@@ -8,11 +8,12 @@ import { CommonModule } from '@angular/common';
 import { AvatarComponent } from "../../comps/avatar/avatar.component";
 import { FadeIn } from '../../animations';
 import { Ticket } from '../../models/database/Ticket';
+import { ChipsComponent } from "../../comps/chips/chips.component";
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [MainMenuComponent, TabsComponent, TabComponent, CommonModule, AvatarComponent],
+  imports: [MainMenuComponent, TabsComponent, TabComponent, CommonModule, AvatarComponent, ChipsComponent],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss',
   animations: [FadeIn(1000, false)]
@@ -44,5 +45,9 @@ export class AdminComponent {
       this.ticketsAssigned = this.tickets?.filter(t => t.status.id === 2).length ?? 0;
       this.ticketsOnHold = this.tickets?.filter(t => t.status.id === 4).length ?? 0;
     });
+  }
+
+  teamNames(user: User) {
+    return user.teams.map(u => u.name);
   }
 }

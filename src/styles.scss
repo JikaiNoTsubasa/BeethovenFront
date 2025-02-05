@@ -266,13 +266,22 @@ a {
     border-bottom: 1px solid $bg-panel-l;
 }
 
+.sbi-table tr:hover {
+    background-color: $bg-panel-l;
+    transition-duration: 0.5s;
+}
+
 .sbi-table th {
     text-align: left;
     height: 45px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .sbi-table td {
     height: 45px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .sbi-input{
@@ -351,6 +360,19 @@ hr.panel{
 .prio-high
 {
     background-color: $chip-high;
+    color: $fg-main;
+}
+
+.sbi-chip-container{
+    display: inline-block;
+}
+
+.sbi-chip{
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 4px;
+    background-color: $bg-primary;
     color: $fg-main;
 }
 

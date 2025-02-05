@@ -13,13 +13,17 @@
                             <div *ngIf="users && users.length > 0">
                                 <table class="sbi-table">
                                     <tr>
-                                        <th>ID</th>
+                                        <th style="width:0.1%;white-space: nowrap;">ID</th>
                                         <th>Name</th>
+                                        <th>Teams</th>
                                     </tr>
                                     <tr *ngFor="let user of users">
                                         <td>{{user.id}}</td>
                                         <td>
                                             <app-avatar [user]="user" [avatarSize]="50"></app-avatar>
+                                        </td>
+                                        <td>
+                                            <app-chips [chips]="teamNames(user)"></app-chips>
                                         </td>
                                     </tr>
                                 </table>
