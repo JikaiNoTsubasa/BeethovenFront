@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { User } from '../../models/database/User';
+import { SanitizeHtmlPipe } from "../../pipes/sanitize-html.pipe";
 
 @Component({
     selector: 'app-avatar',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, SanitizeHtmlPipe],
     templateUrl: './avatar.component.html',
     styleUrl: './avatar.component.scss'
 })

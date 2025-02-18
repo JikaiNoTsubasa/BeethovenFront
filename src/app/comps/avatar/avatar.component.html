@@ -3,6 +3,6 @@
     <span *ngIf="showName" style="margin-left: 5px;">
         {{name}}
     </span>
-    <span *ngIf="tooltip != null" class="sbi-avatar-tooltip" [innerHTML]="tooltip">
+    <span *ngIf="tooltip != null" class="sbi-avatar-tooltip" [innerHTML]="tooltip | sanitizeHtml">
     </span>
 </span>

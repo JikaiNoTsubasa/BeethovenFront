@@ -7,11 +7,12 @@ import { CommonModule } from '@angular/common';
 import { FadeIn } from '../../animations';
 import { AvatarComponent } from "../../comps/avatar/avatar.component";
 import { PrioPipe } from "../../pipes/prio.pipe";
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: 'app-ticket',
     standalone: true,
-    imports: [MainMenuComponent, CommonModule, AvatarComponent, PrioPipe],
+    imports: [MainMenuComponent, CommonModule, AvatarComponent, PrioPipe, RouterModule],
     templateUrl: './ticket.component.html',
     styleUrl: './ticket.component.scss',
     animations: [FadeIn(1000, false)]
