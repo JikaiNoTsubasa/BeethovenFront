@@ -1,0 +1,23 @@
+<div class="sbi-main-container">
+    <app-main-menu></app-main-menu>
+
+    <div class="sbi-center-main">
+        <h1>Meeting Call</h1>
+        <div class="grid">
+            <div class="col-12">
+                <div class="sbi-card">
+                    <h2>Meeting Call</h2>
+                    <div style="margin-top: 20px;">
+                        <span style="color:red">{{message}}</span>
+                        <span class="sbi-btn-normal" (click)="startCall()">Start call</span> <span class="sbi-btn-normal" (click)="endCall()">End call</span><br>
+                        <video #remoteVideo autoplay playinline></video><br>
+                        <video #localVideo autoplay playinline [muted]="true"></video><br>
+                        <span *ngIf="peerId != null">Peer: {{peerId}}</span>
+                    </div>
+
+                </div>
+            </div>
+
+        
+    </div>
+</div>

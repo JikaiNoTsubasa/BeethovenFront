@@ -9,6 +9,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { CustomerComponent } from './pages/customer/customer.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { UserItemComponent } from './pages/user-item/user-item.component';
+import { CallComponent } from './pages/call/call.component';
 
 export const routes: Routes = [
     {
@@ -51,6 +52,13 @@ export const routes: Routes = [
         canActivate: [authGuard],
         title: 'Beethoven - Customers',
         data: { title: 'Customers' },
+    },
+    { 
+        path: 'call', 
+        component: CallComponent,
+        canActivate: [authGuard],
+        title: 'Beethoven - Call',
+        data: { title: 'Call' },
     },
     {
         path: 'settings', component: SettingsComponent, canActivate: [authGuard]
