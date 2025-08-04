@@ -2,15 +2,36 @@
     <h1>Project</h1>
 
     <toolbar>
-        <button class="toolbar-btn squared rmar10" routerLink="/users">New</button>
+        <button class="toolbar-btn squared rmar10" routerLink="/my-projects">Back</button>
     </toolbar>
 
-    <app-card title="Project Details">
-        <div class="pad20" *ngIf="!loadingProject">
-            <h2>{{project?.name}}</h2>
-        </div>
-        <div class="pad20" *ngIf="loadingProject">
-            Loading project...
-        </div>
-    </app-card>
+    <tabs>
+        <tab tabTitle="Overview" tabIcon="fa-solid fa-book-open">
+            <app-card title="Project Phases">
+                <div class="pad20" *ngIf="!loadingProject">
+                    <h2>Phases</h2>
+                </div>
+            </app-card>
+            <br>
+
+            <app-card title="Project Details">
+                <div class="pad20" *ngIf="!loadingProject">
+                    <h2>{{project?.name}}</h2>
+                </div>
+                <div class="pad20" *ngIf="loadingProject">
+                    Loading project...
+                </div>
+            </app-card>
+
+        </tab>
+
+        <tab tabTitle="Documents">
+            <app-card title="Project Documents">
+                <div class="pad20" *ngIf="!loadingProject">
+                    <h2>Documents</h2>
+                </div>
+            </app-card>
+        </tab>
+    </tabs>
+
 </div>

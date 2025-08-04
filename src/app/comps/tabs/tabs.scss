@@ -1,0 +1,33 @@
+@use '../../styles/variables' as *;
+
+.sy-tab{
+    text-decoration: none;
+    font-size: 12px;
+    display: inline-block;
+    padding: 5px 20px;
+    margin-right: 0.5rem;
+    border: 1px solid $fg-primary;
+    color: $fg-main;
+    cursor: pointer;
+}
+
+.sy-tab:hover{
+    color: $fg-primary;
+}
+
+.sy-tabs{
+    list-style: none;
+    list-style-type: none;
+
+    padding: 10px 20px;
+    box-sizing: border-box;
+    background-color: $bg-panel-header;
+    color: $default;
+    margin: 20px 0px;
+    border-radius: 0.25rem;
+}
+
+.active{
+    color: $fg-main;
+    background-color: $fg-primary;
+}

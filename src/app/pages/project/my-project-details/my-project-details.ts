@@ -5,10 +5,12 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { DBService } from '../../../services/db.service';
 import { Project } from '../../../models/dto/Project';
+import { Tabs } from "../../../comps/tabs/tabs";
+import { Tab } from '../../../comps/tab/tab';
 
 @Component({
   selector: 'app-my-project-details',
-  imports: [CommonModule, Toolbar, Card, RouterModule],
+  imports: [CommonModule, Toolbar, Card, RouterModule, Tabs, Tab],
   templateUrl: './my-project-details.html',
   styleUrl: './my-project-details.scss'
 })

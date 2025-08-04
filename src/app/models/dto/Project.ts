@@ -1,6 +1,8 @@
 export interface Project{
     id: number;
     name: string;
+    ownerId: number;
+    ownerName: string;
     isDeleted: boolean;
     createdBy: number;
     createdAt: Date;
