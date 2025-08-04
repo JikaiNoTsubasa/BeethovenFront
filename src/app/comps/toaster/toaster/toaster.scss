@@ -1,0 +1,84 @@
+@use '../../../styles/variables' as *;
+
+/* toaster.component.scss */
+.toaster-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  width: 350px;
+}
+
+.toast {
+  position: relative;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  padding: 12px 15px;
+  color: $default;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  &-title {
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  &-close {
+    background: transparent;
+    border: none;
+    color: $default;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 5px;
+    margin-left: 10px;
+    opacity: 0.7;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 100%;
+    animation: progress linear forwards;
+  }
+
+  &-success {
+    background-color: $green;
+  }
+
+  &-error {
+    background-color: $red;
+  }
+
+  &-warning {
+    background-color: #ff9800;
+  }
+
+  &-info {
+    background-color: $bg-menu;
+  }
+}
+
+@keyframes progress {
+  from { width: 100%; }
+  to { width: 0; }
+}

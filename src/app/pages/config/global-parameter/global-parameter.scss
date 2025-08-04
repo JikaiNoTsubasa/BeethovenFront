@@ -1,0 +1,11 @@
+@use '../../../styles/variables' as *;
+
+.group{
+    padding: 10px 20px;
+    font-size: 30px;
+    box-sizing: border-box;
+    background-color: $primary;
+    color: $default;
+    border-radius: 0.25rem;
+    margin: 10px 0px;
+}

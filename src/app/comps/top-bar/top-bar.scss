@@ -1,0 +1,37 @@
+@use '../../styles/variables' as *;
+
+.top-bar{
+    display: flex;
+    align-items: center; /* Centre verticalement */
+    background-color: $primary;
+    color: $default;
+    padding: 0px 20px;
+    box-sizing: border-box;
+    width: 100%;
+    box-shadow: 0 3px 5px -1px #0003, 0 6px 10px #00000024, 0 1px 18px #0000001f;
+    height: 80px;
+    z-index: 10;
+}
+
+.top-bar-title{
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.top-bar-user{
+    padding-left: 10px;
+    margin-left: auto;
+}
+
+.top-bar-separator{
+    display: inline-block;
+    border-left: 1px solid $bg-separator;
+    height: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.top-bar-env{
+    font-size: 12px;;
+}

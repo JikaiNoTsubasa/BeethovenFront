@@ -1,0 +1,467 @@
+@use "sass:color";
+$primary: #004F4F;
+/*
+$background-color: #101414;
+$background-color-l: lighten($background-color, 5%);
+*/
+$background-color: #f5f5f5;
+$background-color-l: #ddd;
+$forground-color: #404040;
+$forground-color-menu: #E0E3E2;
+$forground-primary: #00FBFB;
+$panel-color: #1E1E1E;
+$background-disabled: #292D2D;
+$forground-disabled: #6E7272;
+$color-d: color.adjust($primary, $lightness: -5%);
+$color-l: color.adjust($primary, $lightness: 7.5%);
+
+$fg-primary: #F6A821;
+$fg-primary-l: color.adjust(#F6A821, $lightness: 20%);
+$bg-primary: #F6A821;
+$bg-primary-d: color.adjust($bg-primary, $lightness: -5%);
+$bg-menu: #2A2D35;
+$bg-menu-l: color.adjust($bg-menu, $lightness: 5%);
+$fg-menu: #fff;
+$fg-menu-d: color.adjust($fg-menu, $lightness: -10%);
+$bg-main: #363842;
+$fg-main: #fff;
+$bg-panel: #2D3038;
+$bg-panel-l: color.adjust($bg-panel, $lightness: 5%);
+
+$chip-low: #1BBF89;
+$chip-medium: #F6A821;
+$chip-high: #DB524B;
+
+$fg-sub: #888888;
+
+html, body { 
+    height: 100%; 
+    background-color: $background-color; 
+    color: $forground-color-menu;
+}
+
+body {
+    margin: 0;
+    font-family: "Varela Round", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.sbi-link{
+    cursor: pointer;
+    text-decoration: none;
+    color: $fg-primary;
+    transition-duration: 0.5s;
+}
+
+.sbi-link:hover{
+    color: $fg-primary-l;
+}
+
+.sbi-login-container{
+    display: flex;
+    height: 100%;
+    background-color: $bg-main;
+}
+
+.sbi-login-card{
+    padding: 20px;
+    display: block;
+    background-color: $bg-menu;
+    width: 400px;
+    margin: auto;
+}
+
+.sbi-login-button{
+    border: none;
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    border: 1px solid $bg-primary;
+    border-radius: 25px;
+    background-color: $bg-primary;
+    color: $forground-primary;
+}
+
+.sbi-login-button:hover{
+    background-color: $panel-color;
+    border: 1px solid $forground-primary;
+}
+
+.sbi-main-container{
+    display: flex;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.sbi-left-menu{
+    width: 200px;
+    background-color: $bg-menu;
+    height: 100%;
+}
+
+.sbi-left-menu header{
+    position: relative;
+    height: 60px;
+    padding: 20px 0 0 15px;
+    font-size: 16px;
+    color: $fg-menu;
+    background: $bg-primary;
+}
+
+.sbi-left-menu header img{
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    margin: 0 10px 0 0;
+    vertical-align: middle;
+    border: 1px solid $fg-menu;
+}
+
+.sbi-avatar{
+    position: relative;
+    display: inline-block;
+}
+
+.sbi-avatar img{
+    position: relative;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin: 0 10px 0 0;
+    vertical-align: middle;
+    /*border: 1px solid $fg-menu;*/
+}
+
+.sbi-avatar-tooltip{
+    visibility: hidden;
+    width: 300px;
+    background-color: $bg-panel;
+    border: 1px solid $bg-panel-l;
+    color: $fg-main;
+    text-align: left;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    font-size: 12px;
+    top: 100%;
+    left: 0px;
+    box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.sbi-avatar:hover .sbi-avatar-tooltip {
+    transition-duration: 1s;
+    visibility: visible;
+    opacity: 1;
+}
+
+.sbi-avatar-tooltip-link{
+    text-decoration: none;
+    color: $fg-primary;
+    cursor: pointer;
+}
+
+.sbi-avatar-tooltip-link:hover{
+    color: $fg-primary-l;
+}
+
+.sbi-left-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sbi-left-menu ul span {
+    display: block;
+    padding: 15px;
+    color: $fg-menu-d;
+    text-transform: uppercase;
+    border-bottom: 1px solid $bg-menu-l;
+}
+
+.sbi-left-menu ul a {
+    position: relative;
+    display: block;
+    padding: 15px 15px 17px 50px;
+    color: $fg-menu;
+    border-bottom: 1px solid $bg-menu-l;
+}
+
+.sbi-left-menu ul a:hover,
+.sbi-left-menu ul a:active {
+    background: $bg-menu-l;
+}
+
+.sbi-left-menu ul a i {
+    position: absolute;
+    top: 15px;
+    left: 18px;
+    font-size: 16px;
+}
+
+.sbi-center-main{
+    flex: 1;
+    padding: 25px;
+    background-color: $bg-main;
+    color: $fg-main;
+}
+
+.sbi-center-main h1{
+    height: 80px;
+    margin: -25px -25px 25px -25px;
+    padding: 0 25px;
+    line-height: 76px;
+    font-size: 24px;
+    font-weight: 400;
+    background: $bg-menu;
+    color: $fg-menu;
+}
+
+.sbi-card{
+    
+    padding: 20px;
+    background-color: $bg-panel;
+}
+
+.sbi-card h2{
+    margin: -20px -20px 20px -20px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 400;
+    border-bottom: 1px solid $bg-panel-l;
+}
+
+.sbi-btn-normal{
+    border: 1px solid color.adjust($fg-main, $lightness: -50%);
+    background-color: $bg-panel;
+    color: color.adjust($fg-main, $lightness: -50%);
+    font-size: 12px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+
+.sbi-btn-normal:hover{
+    border: 1px solid $bg-primary;
+    background-color: $bg-panel;
+    color: $fg-primary;
+    font-size: 12px;
+    padding: 5px 10px;
+    cursor: pointer;
+    
+}
+
+.sbi-table{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.sbi-table tr {
+    border-bottom: 1px solid $bg-panel-l;
+}
+
+.sbi-table tr:hover {
+    background-color: $bg-panel-l;
+    transition-duration: 0.5s;
+}
+
+.sbi-table th {
+    text-align: left;
+    height: 45px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.sbi-table td {
+    height: 45px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.sbi-input{
+    text-decoration: none;
+    border: 0;
+    background-color: $bg-panel-l;
+    padding: 0 10px 0 10px;
+    color: $fg-main;
+    display: block;
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    line-height: 50px;
+}
+
+.sbi-input:focus{
+    outline: none;
+    border-left: 1px solid $bg-primary;
+}
+
+.sbi-breadcrumb{
+    background: none;
+    display: block;
+    margin-bottom: 20px;
+    font-size: 0.8em;
+    a,
+    span {
+        color: $fg-main;
+        transition-duration: 1s;
+    }
+    a:hover,
+    span:hover {
+        cursor: pointer;
+        color: $fg-primary;
+        text-decoration: none;
+    }
+    li {
+        list-style: none;
+        float: left;
+        margin: 5px;
+    }
+    li:last-child {
+        margin-right: 20px;
+    }
+    li::after {
+        content: " > ";
+        color: $fg-main;
+    }
+    li:last-child::after {
+        content: "";
+    }
+}
+
+hr.panel{
+    border: 1px solid $bg-panel-l;
+}
+
+.prio{
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.prio-low
+{
+    background-color: $chip-low;
+    color: $fg-main;
+}
+
+.prio-medium
+{
+    background-color: $chip-medium;
+    color: $fg-main;
+}
+
+.prio-high
+{
+    background-color: $chip-high;
+    color: $fg-main;
+}
+
+.sbi-chip-container{
+    display: inline-block;
+}
+
+.sbi-chip{
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 4px;
+    background-color: $bg-primary;
+    color: $fg-main;
+}
+
+.sbi-activity-col1{
+    width:0.1%; 
+    vertical-align: top;
+    white-space: nowrap; 
+    border-right: 1px solid $bg-panel-l;
+    border-top: 1px solid $bg-panel-l;
+    padding-right: 20px;
+}
+
+.sbi-activity-date{
+    font-size: 10px;
+    color: $fg-sub;
+}
+
+.sbi-activity-message{
+    border-top: 1px solid $bg-panel-l;
+    padding-left: 20px;
+    vertical-align: top;
+}
+
+.sbi-dash-item{
+    text-align: center;
+    padding: 20px;
+    border: 1px solid $bg-primary;
+}
+
+.sbi-dash-item span{
+    display: block;
+    color: $fg-primary;
+    font-size: 30px;
+}
+
+.sbi-chat-box{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    offset: 99;
+    /*
+    width: 300px;
+    height: 500px;
+    background-color: $bg-panel;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    */
+}
+
+.sbi-chat-box .chat-title{
+    background-color: $bg-primary;
+    padding: 10px 50px 10px 50px;
+    color: $fg-main;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.sbi-chat-box .chat-panel{
+    height: 600px;
+    width: 400px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    background-color: $bg-panel;
+    display: none;;
+}
+
+.chat-header{
+    width: 100%;
+    font-size: 20px;
+    padding: 10px;
+    color: $fg-main;
+    background-color: $bg-primary;
+    cursor: pointer;
+}
+
+.chat-content{
+    padding: 10px;
+    overflow-y: scroll;
+    width: 100%;
+    height: 100%;
+}
+
+.chat-users{
+    width: 100%;
+    border-bottom: 1px solid $bg-primary;
+}
+
+.chat-user-item{
+    padding: 10px;
+    display: inline-block;
+    cursor: pointer;
+}

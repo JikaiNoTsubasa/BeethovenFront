@@ -1,0 +1,14 @@
+@use '../../../styles/variables' as *;
+
+.details-box{
+    padding: 20px;
+    box-sizing: border-box;
+    margin-left: 20px;
+    border-left: 1px solid $bg-panel-10;
+}
+
+.details-block{
+    padding-bottom: 50px;
+    border-bottom: 1px solid $bg-panel-10;
+    margin-bottom: 20px;
+}

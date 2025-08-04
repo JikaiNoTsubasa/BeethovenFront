@@ -1,0 +1,22 @@
+<div class="toaster-container">
+  <div *ngFor="let toast of toasts"
+       class="toast"
+       [class.toast-success]="toast.type === 'success'"
+       [class.toast-error]="toast.type === 'error'"
+       [class.toast-warning]="toast.type === 'warning'"
+       [class.toast-info]="toast.type === 'info'"
+       @toastAnimation
+       (click)="removeToast(toast.id)">
+
+    <div class="toast-header" *ngIf="toast.title">
+      <span class="toast-title">{{ toast.title }}</span>
+      <button class="toast-close" (click)="removeToast(toast.id)">×</button>
+    </div>
+
+    <div class="toast-body">
+      {{ toast.message }}
+    </div>
+
+    <div class="toast-progress" [style.animationDuration]="toast.timeout + 'ms'"></div>
+  </div>
+</div>

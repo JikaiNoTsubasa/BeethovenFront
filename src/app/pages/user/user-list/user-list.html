@@ -1,0 +1,42 @@
+<div class="page">
+    <h1>Users</h1>
+
+    <toolbar>
+        <button class="toolbar-btn squared rmar10" (click)="refreshUsers()">Refresh</button>
+        <button class="toolbar-btn squared rmar10" routerLink="/users">New</button>
+    </toolbar>
+
+    <app-card title="User list">
+        <div class="pad20" *ngIf="!loadingUsers">
+            <table class="table">
+                <tr>
+                    <th>#ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>CanLogin</th>
+                    <th>Last Connection</th>
+                </tr>
+                <tr *ngFor="let user of users">
+                    <td>{{user.id}}</td>
+                    <td>
+                        <a class="sb-link" routerLink="/users/{{user.id}}">{{user.identifier}}</a>
+                    </td>
+                    <td>{{user.email}}</td>
+                    <td>
+                        <i [ngClass]="{
+                        'fa-solid': true,
+                        'fa-circle-check sb-green': user.canLogIn,
+                        'fa-circle-xmark sb-red': !user.canLogIn
+                        }"></i>
+                    </td>
+                    <td>
+                        {{user.lastConnectionAt | date: 'dd/MM/yyyy HH:mm'}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="pad20" *ngIf="loadingUsers">
+            Loading users...
+        </div>
+    </app-card>
+</div>

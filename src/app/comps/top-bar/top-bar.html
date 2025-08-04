@@ -1,0 +1,9 @@
+<div class="top-bar">
+    <div class="top-bar-title">S2i Admin</div>
+    <span class="top-bar-separator"></span>
+    <span class="top-bar-env">{{urlEnv}}</span>
+    <span class="top-bar-user">
+        <span class="top-bar-separator"></span>
+        {{userService.currentUser?.identifier ?? userIdentifier}}
+    </span>
+</div>

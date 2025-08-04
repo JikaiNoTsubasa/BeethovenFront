@@ -1,0 +1,15 @@
+@use '../../styles/variables' as *;
+
+.input-live{
+    text-decoration: none;
+    border: 0;
+    border-bottom: 1px solid $primary;
+    color: $default;
+    box-sizing: border-box;
+
+    background: none;
+}
+
+.input-live:focus{
+    outline: none;
+}

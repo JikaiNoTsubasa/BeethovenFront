@@ -1,0 +1,83 @@
+<div class="page">
+    <h1>User details</h1>
+
+    <toolbar>
+        <button class="toolbar-btn squared rmar10" routerLink="/users">Back</button>
+        <button class="toolbar-btn squared rmar10">Disable Login</button>
+        <button class="toolbar-btn squared rmar10">Change Password</button>
+        <button class="toolbar-btn squared rmar10">Role</button>
+    </toolbar>
+
+    <div class="grid">
+        <div class="col-8">
+            <app-card title="User details">
+                <div class="pad20" *ngIf="user">
+                    <div style="display: flex;">
+                        <div>
+                            <img class="avatar" src="icon_user.svg" width="200px" height="200px">
+                            <br>
+                            <div style="text-align: center;">{{user.identifier}}</div>
+
+                        </div>
+                        <div class="w100 details-box" >
+                            <div class="grid details-block">
+                                <div class="col-6">
+                                    <div>
+                                        <span class="bold">ID:</span><br>
+                                        {{user.id}}
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div>
+                                        <span class="bold">Email:</span><br>
+                                        {{user.email}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid">
+                                <div class="col-6">
+                                    <div>
+                                        <span class="bold">Last connection:</span><br>
+                                        {{user.lastConnectionAt | date: 'dd/MM/yyyy HH:mm'}}
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div>
+                                        <span class="bold">Can log in:</span><br>
+                                        <i [ngClass]="{
+                                        'fa-solid': true,
+                                        'fa-circle-check sb-green': user.canLogIn,
+                                        'fa-circle-xmark sb-red': !user.canLogIn
+                                        }"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- end flex -->
+
+                </div>
+                <div class="pad20" *ngIf="!user">
+                    <p>Loading user...</p>
+                </div>
+            </app-card>
+        </div>
+
+        <div class="col-4">
+            <app-card title="Roles">
+                <div class="pad20">
+                    <h2>Roles</h2>
+                    <table class="sb-table">
+                        <tr>
+                            <th>Code</th>
+                            <th>Level</th>
+                        </tr>
+                        <tr *ngFor="let role of roles">
+                            <td>{{role.code}}</td>
+                            <td>{{role.level}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </app-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,105 @@
+@use '../../styles/variables' as *;
+
+.main-menu{
+    background-color: $bg-menu;
+    text-decoration: none;
+    font-size: 0.8125rem;
+    color: $default;
+    padding-top: 20px;
+    width: 250px;
+    
+    height: calc(100vh - 80px);
+    
+    box-sizing: border-box;
+
+    /*
+    min-height: 0;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    */
+}
+
+.main-menu-item{
+    padding: 15px 15px 17px 50px;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    text-decoration: none;
+    position: relative;
+    display: block;
+    color: $default;
+    
+    .i{
+        position: absolute;
+        top: 15px;
+        left: 18px;
+        font-size: 16px;
+    }
+}
+
+.main-menu-item:hover{
+    background-color: $bg-menu-item-hover;
+}
+
+
+.sbi-menu-section {
+    margin: 0;
+    text-decoration: none;
+    position: relative;
+    display: block;
+    padding: 15px 15px 17px 50px;
+    color: $default;
+    cursor: pointer;
+
+    &.selected{
+        background-color: $bg-menu-item-active;
+        color: $primary;
+    }
+}
+
+.sbi-menu-section:hover{
+    background-color: $bg-menu-item-hover;
+}
+
+.sbi-menu-section:active {
+    background: $bg-menu-item-active;
+    color: $primary;
+}
+
+.sbi-left-menu ul span {
+    text-decoration: none;
+    display: block;
+    padding: 15px;
+    color: $default;
+    text-transform: uppercase;
+}
+
+.sbi-menu-link {
+    text-decoration: none;
+    position: relative;
+    display: block;
+    padding: 15px 15px 17px 50px;
+    color: $default;
+    box-sizing: border-box;
+
+    &.selected{
+        background-color: $bg-menu-item-active;
+        color: $primary;
+    }
+}
+
+.sbi-menu-link:hover{
+    background-color: $bg-menu-item-hover;
+}
+
+.sbi-menu-link:active {
+    background: $bg-menu-item-active;
+    color: $primary;
+}
+
+.sbi-menu-section i {
+    position: absolute;
+    top: 15px;
+    left: 18px;
+    font-size: 16px;
+}

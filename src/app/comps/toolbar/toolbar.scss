@@ -1,0 +1,9 @@
+@use '../../styles/variables' as *;
+
+.toolbar{
+    padding: 10px 20px;
+    box-sizing: border-box;
+    background-color: $bg-panel-header;
+    color: $default;
+    margin: 20px 0px;
+}

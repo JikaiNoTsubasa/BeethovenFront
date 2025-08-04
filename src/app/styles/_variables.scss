@@ -1,0 +1,28 @@
+@use 'sass:color';
+
+$primary: #E91D63;
+$primary-10: color.adjust($primary, $lightness: 10%);
+$primary-d-10: color.adjust($primary, $lightness: -10%);
+$default: #FFFFFF;
+$fg-disabled: #626262;
+
+$bg-main: #303030;
+$bg-panel: #353535;
+$bg-panel-10: color.adjust($bg-panel, $lightness: 10%);
+$bg-panel-header: #404040;
+$bg-menu: #1F1F1F;
+$bg-separator: #313131;
+$bg-disabled: #474747;
+
+$bg-menu-item-hover: #282828;
+$bg-menu-item-active: #171717;
+
+$red: #b00020;
+$green: #60af20;
+$yellow: #FF9F05;
+
+$table-background: #1F1F1F;
+$table-header: #1F1F1F;
+$table-border: #1F1F1F;
+$table-row: #353535;
+$table-row-hover: #303030;
