@@ -1,1 +1,9 @@
 <router-outlet />
+<popup
+    [content]="contentTemplate"
+    [isOpen]="isOpen"
+    [context]="context"
+    (closed)="popupService.close()"
+    >
+
+</popup>

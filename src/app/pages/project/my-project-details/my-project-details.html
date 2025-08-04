@@ -1,11 +1,7 @@
 <div class="page">
     <h1>Project</h1>
 
-    <toolbar>
-        <button class="toolbar-btn squared rmar10" routerLink="/my-projects">Back</button>
-    </toolbar>
-
-    <tabs>
+    <tabs (onTabChange)="onTabChange($event)">
         <tab tabTitle="Overview" tabIcon="fa-solid fa-book-open">
             <app-card title="Project Phases">
                 <div class="pad20" *ngIf="!loadingProject">
@@ -25,13 +21,52 @@
 
         </tab>
 
-        <tab tabTitle="Documents">
+        <tab tabTitle="Documents" tabIcon="fa-solid fa-folder-open">
+            <app-card title="Project Documents">
+                <button class="toolbar-btn squared rmar10" (click)="openUploadDocumentModal(uploadDocument)">Upload</button>
+                <div class="pad20" *ngIf="!loadingDocuments && documents != null && documents.length > 0">
+                    <h2>Documents</h2>
+
+                    <table class="table">
+                        <tr>
+                            <th>#ID</th>
+                            <th>Name</th>
+                            <th>Version</th>
+                        </tr>
+                        <tr *ngFor="let doc of documents">
+                            <td>{{doc.id}}</td>
+                            <td>
+                                <a class="sb-link" routerLink="/my-projects/{{doc.id}}">{{doc.name}}</a>
+                            </td>
+                            <td>
+                                {{doc.version}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="pad20" *ngIf="loadingDocuments">
+                    Loading documents...
+                </div>
+
+                <div class="pad20" *ngIf="!loadingDocuments && documents?.length == 0">
+                    No documents for this project
+                </div>
+            </app-card>
+        </tab>
+
+        <tab tabTitle="Configuration" tabIcon="fa-solid fa-cog">
             <app-card title="Project Documents">
                 <div class="pad20" *ngIf="!loadingProject">
-                    <h2>Documents</h2>
+                    <h2>Configuration</h2>
                 </div>
+                
             </app-card>
         </tab>
     </tabs>
 
 </div>
+
+<ng-template #uploadDocument>
+    <h1>Upload Document</h1>
+</ng-template>

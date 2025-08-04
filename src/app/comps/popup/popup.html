@@ -1,0 +1,10 @@
+<div class="backdrop" *ngIf="isOpen" (click)="close()"></div>
+<div class="side-panel" [class.open]="isOpen" (click)="$event.stopPropagation()">
+  <div class="content">
+    <ng-container 
+      *ngIf="content"
+      [ngTemplateOutlet]="content"
+      [ngTemplateOutletContext]="context"
+    ></ng-container>
+  </div>
+</div>

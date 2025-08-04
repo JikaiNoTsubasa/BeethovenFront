@@ -6,6 +6,7 @@ import { User } from "../models/dto/User";
 import { Role } from "../models/dto/Role";
 import { GlobalParameter } from "../models/dto/GlobalParameter";
 import { Project } from "../models/dto/Project";
+import { Document } from "../models/dto/Document";
 
 @Injectable({
     providedIn: "root",
@@ -65,6 +66,10 @@ export class DBService {
 
     fetchMyProject(id: number): Observable<Project> {
         return this.http.get<Project>(this.getEnvUrl() + '/api/my-projects/' + id);
+    }
+
+    fetchProjectDocuments(id: number): Observable<Document[]> {
+        return this.http.get<Document[]>(this.getEnvUrl() + '/api/projects/' + id + '/documents');
     }
     //#endregion
 }

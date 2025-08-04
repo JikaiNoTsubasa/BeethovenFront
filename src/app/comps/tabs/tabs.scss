@@ -2,17 +2,20 @@
 
 .sy-tab{
     text-decoration: none;
-    font-size: 12px;
+    border: 0;
+    outline: none;
+    padding: 10px 20px;
     display: inline-block;
-    padding: 5px 20px;
     margin-right: 0.5rem;
-    border: 1px solid $fg-primary;
-    color: $fg-main;
+    box-sizing: border-box;
+    background-color: $primary;
+    color: $default;
     cursor: pointer;
+    border-radius: 0.25rem;
 }
 
 .sy-tab:hover{
-    color: $fg-primary;
+    background-color: $primary-10;
 }
 
 .sy-tabs{
@@ -28,6 +31,6 @@
 }
 
 .active{
-    color: $fg-main;
-    background-color: $fg-primary;
+    color: $default;
+    background-color: $primary;
 }
