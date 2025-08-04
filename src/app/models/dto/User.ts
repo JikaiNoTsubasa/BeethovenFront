@@ -1,16 +1,12 @@
 export interface User {
     id: number;
     email: string;
-    canLogIn: boolean;
-    identifier: string;
+    canLogin: boolean;
     firstname: string;
     lastname: string;
-    lastConnectionAt: Date;
-    preferedLanguageNotifications: string;
-    canLogin: boolean;
-    normalizedEmail: string;
-    normalizedIdentifier: string;
-    deleted: boolean;
+    lastConnection: Date;
+    avatar: string;
+    isDeleted: boolean;
     createdBy: number;
     createdAt: Date;
     modifiedBy: number;
