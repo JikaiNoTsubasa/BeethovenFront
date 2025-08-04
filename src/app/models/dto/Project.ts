@@ -1,12 +1,6 @@
-export interface User {
+export interface Project{
     id: number;
     name: string;
-    email: string;
-    canLogin: boolean;
-    firstname: string;
-    lastname: string;
-    lastConnection: Date;
-    avatar: string;
     isDeleted: boolean;
     createdBy: number;
     createdAt: Date;

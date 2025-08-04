@@ -1,0 +1,16 @@
+<div class="page">
+    <h1>Project</h1>
+
+    <toolbar>
+        <button class="toolbar-btn squared rmar10" routerLink="/users">New</button>
+    </toolbar>
+
+    <app-card title="Project Details">
+        <div class="pad20" *ngIf="!loadingProject">
+            <h2>{{project?.name}}</h2>
+        </div>
+        <div class="pad20" *ngIf="loadingProject">
+            Loading project...
+        </div>
+    </app-card>
+</div>

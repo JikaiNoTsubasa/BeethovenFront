@@ -1,0 +1,27 @@
+<div class="page">
+    <h1>My Projects</h1>
+
+    <toolbar>
+        <button class="toolbar-btn squared rmar10" routerLink="/new-project">New</button>
+    </toolbar>
+
+    <app-card title="Project list">
+        <div class="pad20" *ngIf="!loadingProjects">
+            <table class="table">
+                <tr>
+                    <th>#ID</th>
+                    <th>Name</th>
+                </tr>
+                <tr *ngFor="let project of projects">
+                    <td>{{project.id}}</td>
+                    <td>
+                        <a class="sb-link" routerLink="/my-projects/{{project.id}}">{{project.name}}</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="pad20" *ngIf="loadingProjects">
+            Loading projects...
+        </div>
+    </app-card>
+</div>

@@ -27,6 +27,7 @@ export class MainMenu {
 
   @Input() menuItems: MenuItem [] = [
     { name: 'Home', icon: 'fa fa-home', subMenuItems: null, url: 'main' },
+    { name: 'My Projects', icon: 'fa fa-book', subMenuItems: null, url: 'my-projects' },
     { name: 'Users', icon: 'fa fa-users', url: null, subMenuItems: [
       { name: 'List', icon: 'fa fa-users', url: 'users' }
     ]

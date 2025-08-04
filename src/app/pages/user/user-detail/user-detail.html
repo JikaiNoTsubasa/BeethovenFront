@@ -16,7 +16,7 @@
                         <div>
                             <img class="avatar" src="icon_user.svg" width="200px" height="200px">
                             <br>
-                            <div style="text-align: center;">{{user.identifier}}</div>
+                            <div style="text-align: center;">{{user.name}}</div>
 
                         </div>
                         <div class="w100 details-box" >
@@ -38,7 +38,7 @@
                                 <div class="col-6">
                                     <div>
                                         <span class="bold">Last connection:</span><br>
-                                        {{user.lastConnectionAt | date: 'dd/MM/yyyy HH:mm'}}
+                                        {{user.lastConnection | date: 'dd/MM/yyyy HH:mm'}}
                                     </div>
                                 </div>
                                 <div class="col-6">
@@ -46,8 +46,8 @@
                                         <span class="bold">Can log in:</span><br>
                                         <i [ngClass]="{
                                         'fa-solid': true,
-                                        'fa-circle-check sb-green': user.canLogIn,
-                                        'fa-circle-xmark sb-red': !user.canLogIn
+                                        'fa-circle-check sb-green': user.canLogin,
+                                        'fa-circle-xmark sb-red': !user.canLogin
                                         }"></i>
                                     </div>
                                 </div>

@@ -5,6 +5,7 @@ import { LoginResponse } from "../models/dto/LoginResponse";
 import { User } from "../models/dto/User";
 import { Role } from "../models/dto/Role";
 import { GlobalParameter } from "../models/dto/GlobalParameter";
+import { Project } from "../models/dto/Project";
 
 @Injectable({
     providedIn: "root",
@@ -28,32 +29,42 @@ export class DBService {
 
     //#region Users
     fetchMyUser(): Observable<User> {
-        return this.http.get<User>(this.getEnvUrl() + '/me');
+        return this.http.get<User>(this.getEnvUrl() + '/api/me');
     }
 
     fetchUsers(): Observable<User[]> {
-        return this.http.get<User[]>(this.getEnvUrl() + '/users');
+        return this.http.get<User[]>(this.getEnvUrl() + '/api/users');
     }
 
     fetchUser(id: number): Observable<User> {
-        return this.http.get<User>(this.getEnvUrl() + '/users/' + id);
+        return this.http.get<User>(this.getEnvUrl() + '/api/users/' + id);
     }
 
     fetchUserRoles(id: number): Observable<Role[]> {
-        return this.http.get<Role[]>(this.getEnvUrl() + '/users/' + id + '/roles');
+        return this.http.get<Role[]>(this.getEnvUrl() + '/api/users/' + id + '/roles');
     }
     //#endregion
 
     //#region Global Param
     fetchGlobalParameters(): Observable<GlobalParameter[]> {
-        return this.http.get<GlobalParameter[]>(this.getEnvUrl() + '/global-parameters');
+        return this.http.get<GlobalParameter[]>(this.getEnvUrl() + '/api/global-parameters');
     }
 
     updateGlobalParameter(code: string, value: string): Observable<GlobalParameter> {
         let data: any = {};
         data.value = value;
         data.code = code;
-        return this.http.put<GlobalParameter>(this.getEnvUrl() + '/global-parameters/' + code + '/value', data);
+        return this.http.put<GlobalParameter>(this.getEnvUrl() + '/api/global-parameters/' + code + '/value', data);
+    }
+    //#endregion
+
+    //#region Projects
+    fetchMyProjects(): Observable<Project[]> {
+        return this.http.get<Project[]>(this.getEnvUrl() + '/api/my-projects');
+    }
+
+    fetchMyProject(id: number): Observable<Project> {
+        return this.http.get<Project>(this.getEnvUrl() + '/api/my-projects/' + id);
     }
     //#endregion
 }
