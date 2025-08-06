@@ -1,8 +1,10 @@
+import { Customer } from "./Customer";
+
 export interface Project{
     id: number;
     name: string;
-    ownerId: number;
-    ownerName: string;
+    ownerId: number | null;
+    ownerName: string | null;
     isDeleted: boolean;
     createdBy: number;
     createdAt: Date;
@@ -10,4 +12,6 @@ export interface Project{
     modifiedAt: Date;
     deletedBy: number;
     deletedAt: Date;
+    customerId: number | null;
+    customerName: string | null;
 }

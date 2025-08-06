@@ -207,3 +207,26 @@ body{
     vertical-align: middle;
     color: $default;
 }
+
+.w100{
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.sbi-input{
+    display: block;
+    color: $primary;
+    border: 0;
+    outline: none;
+    padding: 20px 10px;
+    margin: 10px 0px;
+    box-sizing: border-box;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    background-color: $bg-input;
+    border-bottom: 1px solid $default;
+}
+
+.sbi-input:focus{
+    border-bottom: 1px solid $primary;
+}

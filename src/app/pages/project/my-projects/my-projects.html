@@ -2,7 +2,7 @@
     <h1>My Projects</h1>
 
     <toolbar>
-        <button class="toolbar-btn squared rmar10" routerLink="/new-project">New</button>
+        <button class="toolbar-btn squared rmar10" (click)="openDialogNewProject(dialogCreateProject)">New</button>
     </toolbar>
 
     <app-card title="Project list">
@@ -12,6 +12,7 @@
                     <th>#ID</th>
                     <th>Name</th>
                     <th>Owner</th>
+                    <th>Customer</th>
                 </tr>
                 <tr *ngFor="let project of projects">
                     <td>{{project.id}}</td>
@@ -21,6 +22,10 @@
                     <td>
                         <a class="sb-link" routerLink="/users/{{project.ownerId}}">{{project.ownerName}}</a>
                     </td>
+                    <td>
+                        <span *ngIf="project.customerId != null"><a class="sb-link" routerLink="/customers/{{project.customerId}}">{{project.customerName}}</a></span>
+                        <span *ngIf="project.customerId == null">No customer</span>
+                    </td>
                 </tr>
             </table>
         </div>
@@ -29,3 +34,15 @@
         </div>
     </app-card>
 </div>
+
+<ng-template #dialogCreateProject>
+    <h1>New Project</h1>
+    <form [formGroup]="createPrjForm" (ngSubmit)="createProject()">
+        Name:
+        <input class="sbi-input w100" type="text" formControlName="name" placeholder="Name">
+        <br>
+        <input type="checkbox" formControlName="initializePhases"> Initialize with default phases
+        <br><br>
+        <button type="submit" class="toolbar-btn">Create</button>
+    </form>
+</ng-template>
