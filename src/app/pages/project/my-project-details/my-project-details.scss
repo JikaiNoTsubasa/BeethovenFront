@@ -1,0 +1,23 @@
+@use '../../../styles/variables' as *;
+
+.phase-container{
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.phase-item{
+    flex: auto;
+    border: 1px solid $default;
+    text-align: center;
+    padding: 20px;
+}
+
+.phase-current{
+    background-color: $primary;
+    border: 1px solid $primary;
+    color: $default;
+}

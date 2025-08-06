@@ -7,6 +7,7 @@ import { Card } from "../../../comps/card/card";
 import { RouterModule } from '@angular/router';
 import { PopupService } from '../../../services/PopupService';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Customer } from '../../../models/dto/Customer';
 
 @Component({
   selector: 'app-my-projects',
@@ -22,12 +23,17 @@ export class MyProjects {
   projects: Project[] | null = null;
   loadingProjects: boolean = false;
 
+  customers: Customer[] | null = null;
+  loadingCustomers: boolean = false;
+
   createPrjForm = new FormGroup({
     name: new FormControl(''),
     initializePhases: new FormControl(true),
+    customerId: new FormControl('')
   });
 
   ngOnInit(){
+    this.refreshCustomers();
     this.refreshMyProjects();
   }
 
@@ -46,11 +52,43 @@ export class MyProjects {
     });
   }
 
+  refreshCustomers() {
+    this.loadingCustomers = true;
+    this.dbService.fetchCustomers().subscribe({
+      next: (data) => {
+        this.customers = data;
+      },
+      error: (error) => {
+        console.error(error);
+      },
+      complete: () => {
+        this.loadingCustomers = false;
+      }
+    });
+  }
+
   openDialogNewProject(template: TemplateRef<any>){
     this.popupService.open(template);
   }
 
   createProject(){
-
+    let name: string = this.createPrjForm.value.name ?? '';
+    let initializePhases: boolean = this.createPrjForm.value.initializePhases ?? false;
+    let customerId: number | undefined = undefined;
+    if (this.createPrjForm.value.customerId != null && this.createPrjForm.value.customerId != ''){
+      customerId = parseInt(this.createPrjForm.value.customerId);
+    }
+    this.dbService.createProject(name, initializePhases, customerId).subscribe({
+      next: (data) => {
+        this.refreshMyProjects();
+      },
+      error: (error) => {
+        console.error(error);
+      },
+      complete: () => {
+        this.popupService.close();
+        this.createPrjForm.reset();
+      }
+    });
   }
 }

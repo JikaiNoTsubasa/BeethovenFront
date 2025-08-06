@@ -8,6 +8,7 @@ import { Document } from '../../../models/dto/Document';
 import { Tabs } from "../../../comps/tabs/tabs";
 import { Tab } from '../../../comps/tab/tab';
 import { PopupService } from '../../../services/PopupService';
+import { ProjectPhase } from '../../../models/dto/ProjectPhase';
 
 @Component({
   selector: 'app-my-project-details',
@@ -26,6 +27,9 @@ export class MyProjectDetails {
 
   documents: Document[] | null = null;
   loadingDocuments: boolean = false;
+
+  phases: ProjectPhase[] | null = null;
+  loadingPhases: boolean = false;
 
   currentId: number | null = null;
 
@@ -46,6 +50,7 @@ export class MyProjectDetails {
         },
         complete: () => {
           this.loadingProject = false;
+          this.refreshPhases();
         }
       });
     })
@@ -63,6 +68,23 @@ export class MyProjectDetails {
         },
         complete: () => {
           this.loadingDocuments = false;
+        }
+      });
+    }
+  }
+
+  refreshPhases(){
+    if (this.currentId) {
+      this.loadingPhases = true;
+      this.dbService.fetchProjectPhases(this.currentId).subscribe({
+        next: (phases) => {
+          this.phases = phases;
+        },
+        error: (error) => {
+          console.error(error);
+        },
+        complete: () => {
+          this.loadingPhases = false;
         }
       });
     }

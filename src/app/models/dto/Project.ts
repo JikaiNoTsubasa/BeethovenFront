@@ -14,4 +14,5 @@ export interface Project{
     deletedAt: Date;
     customerId: number | null;
     customerName: string | null;
+    currentPhaseId: number | null;
 }

@@ -8,6 +8,7 @@ import { GlobalParameter } from "../models/dto/GlobalParameter";
 import { Project } from "../models/dto/Project";
 import { Document } from "../models/dto/Document";
 import { Customer } from "../models/dto/Customer";
+import { ProjectPhase } from "../models/dto/ProjectPhase";
 
 @Injectable({
     providedIn: "root",
@@ -71,6 +72,20 @@ export class DBService {
 
     fetchProjectDocuments(id: number): Observable<Document[]> {
         return this.http.get<Document[]>(this.getEnvUrl() + '/api/projects/' + id + '/documents');
+    }
+
+    createProject(name: string, initializePhases: boolean, customerId?: number): Observable<Project> {
+        let data: any = {};
+        data.name = name;
+        if (customerId != null){
+            data.customerId = customerId;
+        }
+        data.initializePhases = initializePhases;
+        return this.http.post<Project>(this.getEnvUrl() + '/api/projects', data);
+    }
+
+    fetchProjectPhases(id: number): Observable<ProjectPhase[]> {
+        return this.http.get<ProjectPhase[]>(this.getEnvUrl() + '/api/projects/' + id + '/phases');
     }
     //#endregion
 

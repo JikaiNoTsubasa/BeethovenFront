@@ -3,11 +3,31 @@
 
     <tabs (onTabChange)="onTabChange($event)">
         <tab tabTitle="Overview" tabIcon="fa-solid fa-book-open">
-            <app-card title="Project Phases">
-                <div class="pad20" *ngIf="!loadingProject">
-                    <h2>Phases</h2>
+            <div class="grid">
+                <div class="col-9">
+                    <app-card title="Project Phases">
+                        <div class="pad20" *ngIf="!loadingProject">
+                            <div *ngIf="phases != null && phases.length > 0" class="phase-container">
+                                <div [class]="phase.id == project?.currentPhaseId ? 'phase-item phase-current' : 'phase-item'" *ngFor="let phase of phases">
+                                        {{phase.name}}
+                                </div>
+                            </div>
+                            <span *ngIf="phases == null || phases.length == 0">
+                                No phases in this project
+                            </span>
+                        </div>
+                    </app-card>
                 </div>
-            </app-card>
+
+                <div class="col-3">
+                    <app-card title="Customer">
+                        <div class="pad20" *ngIf="!loadingProject">
+                            <span *ngIf="project?.customerId != null"><a class="sb-link" routerLink="/customers/{{project?.customerId}}">{{project?.customerName}}</a></span>
+                            <span *ngIf="project?.customerId == null">No customer</span>
+                        </div>
+                    </app-card>
+                </div>
+            </div>
             <br>
 
             <app-card title="Project Details">

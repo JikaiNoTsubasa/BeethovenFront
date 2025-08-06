@@ -38,8 +38,13 @@
 <ng-template #dialogCreateProject>
     <h1>New Project</h1>
     <form [formGroup]="createPrjForm" (ngSubmit)="createProject()">
-        Name:
+        Name<span class="primary">*</span>:
         <input class="sbi-input w100" type="text" formControlName="name" placeholder="Name">
+        <br>
+        Customer:
+        <select class="sbi-input w100" formControlName="customerId">
+            <option *ngFor="let customer of customers" [value]="customer.id">{{customer.name}}</option>
+        </select>
         <br>
         <input type="checkbox" formControlName="initializePhases"> Initialize with default phases
         <br><br>
