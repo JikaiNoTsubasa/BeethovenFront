@@ -12,12 +12,14 @@
                         <span class="sbi-btn-normal" (click)="startCall()">Start call</span> <span class="sbi-btn-normal" (click)="endCall()">End call</span><br>
                         <video #remoteVideo autoplay playinline></video><br>
                         <video #localVideo autoplay playinline [muted]="true"></video><br>
-                        <span *ngIf="peerId != null">Peer: {{peerId}}</span>
+                        @if(peerId != null){
+                            <span>Peer: {{peerId}}</span>
+                        }
+                        @else{
+                            <span>No Peer</span>
+                        }
                     </div>
-
                 </div>
             </div>
-
-        
     </div>
 </div>

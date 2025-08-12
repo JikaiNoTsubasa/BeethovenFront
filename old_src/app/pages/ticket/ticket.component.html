@@ -10,41 +10,58 @@
                     <div>
                         <a href="ticket/new" class="sbi-btn-normal">New Ticket</a>
                     </div>
-                    <span *ngIf="loading">Loading...</span>
-                    <div *ngIf="tickets && tickets.length > 0" style="margin-top: 20px;">
-                        <table class="sbi-table">
-                            <tr>
-                                <th>ID</th>
-                                <th>Status</th>
-                                <th>Name</th>
-                                <th>Priority</th>
-                                <th>Type</th>
-                                <th>Created At</th>
-                                <th>Assigned To</th>
-                                <th>Product</th>
-                                <th>GitLab</th>
-                            </tr>
-                            <tr *ngFor="let ticket of tickets">
-                                <td>{{ticket.id}}</td>
-                                <td>{{ticket.status.name}}</td>
-                                <td><a class="sbi-link" href="/ticket/{{ticket.id}}">{{ticket.name}}</a></td>
-                                <td><span class="prio {{ticket.priority.name | prio }}">{{ticket.priority.name}}</span></td>
-                                <td>{{ticket.type.name}}</td>
-                                <td>{{ticket.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
-                                <td>
-                                    <app-avatar *ngIf="ticket.assignedTo"
-                                        [user]="ticket.assignedTo"
-                                        [avatarSize]="25"
-                                        [showName]="false"
-                                        >
-                                    </app-avatar>
-                                    <span *ngIf="!ticket.assignedTo">Unassigned</span>
-                                </td>
-                                <td>{{ticket.product?.name}}</td>
-                                <td><a *ngIf="ticket.product != null && ticket.gitlabTicketId != null" class="sbi-link" href="{{ticket.product.codeBaseLink}}/{{ticket.gitlabTicketId}}" target="_blank">#{{ticket.gitlabTicketId}}</a></td>
-                            </tr>
-                        </table>
-                    </div>
+                    @if(loading){
+                        <span>Loading...</span>
+                    }
+                    @if (){
+                        <div style="margin-top: 20px;">
+                            <table class="sbi-table">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Status</th>
+                                    <th>Name</th>
+                                    <th>Priority</th>
+                                    <th>Type</th>
+                                    <th>Created At</th>
+                                    <th>Assigned To</th>
+                                    <th>Product</th>
+                                    <th>GitLab</th>
+                                </tr>
+                                @for (ticket of tickets; track ticket.id){
+                                    <tr>
+                                        <td>{{ticket.id}}</td>
+                                        <td>{{ticket.status.name}}</td>
+                                        <td><a class="sbi-link" href="/ticket/{{ticket.id}}">{{ticket.name}}</a></td>
+                                        <td><span class="prio {{ticket.priority.name | prio }}">{{ticket.priority.name}}</span></td>
+                                        <td>{{ticket.type.name}}</td>
+                                        <td>{{ticket.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
+                                        <td>
+                                            @if(ticket.assignedTo){
+                                                <app-avatar
+                                                    [user]="ticket.assignedTo"
+                                                    [avatarSize]="25"
+                                                    [showName]="false"
+                                                    >
+                                                </app-avatar>
+                                            }
+                                            @else{
+                                                <span>Unassigned</span>
+                                            }
+                                        </td>
+                                        <td>{{ticket.product?.name}}</td>
+                                        <td>
+                                            @if (ticket.product != null && ticket.gitlabTicketId != null){
+                                                <a class="sbi-link" href="{{ticket.product.codeBaseLink}}/{{ticket.gitlabTicketId}}" target="_blank">#{{ticket.gitlabTicketId}}</a>
+
+                                            }
+                                        </td>
+                                    </tr>
+
+                                }
+                            </table>
+                        </div>
+
+                    }
 
                 </div>
             </div>

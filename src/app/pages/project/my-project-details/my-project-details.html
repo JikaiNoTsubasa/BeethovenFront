@@ -6,37 +6,53 @@
             <div class="grid">
                 <div class="col-9">
                     <app-card title="Project Phases">
-                        <div class="pad20" *ngIf="!loadingProject">
-                            <div *ngIf="phases != null && phases.length > 0" class="phase-container">
-                                <div [class]="phase.id == project?.currentPhaseId ? 'phase-item phase-current' : 'phase-item'" *ngFor="let phase of phases">
-                                        {{phase.name}}
-                                </div>
+                        @if (!loadingProject) {
+                            <div class="pad20">
+                                @if (phases != null && phases.length > 0) {
+                                    <div class="phase-container">
+                                        <div [class]="phase.id == project?.currentPhaseId ? 'phase-item phase-current' : 'phase-item'" *ngFor="let phase of phases">
+                                                {{phase.name}}
+                                        </div>
+                                    </div>
+                                }
+                                @else {
+                                    <span>
+                                        No phases in this project
+                                    </span>
+                                }
                             </div>
-                            <span *ngIf="phases == null || phases.length == 0">
-                                No phases in this project
-                            </span>
-                        </div>
+                        }
                     </app-card>
                 </div>
 
                 <div class="col-3">
                     <app-card title="Customer">
-                        <div class="pad20" *ngIf="!loadingProject">
-                            <span *ngIf="project?.customerId != null"><a class="sb-link" routerLink="/customers/{{project?.customerId}}">{{project?.customerName}}</a></span>
-                            <span *ngIf="project?.customerId == null">No customer</span>
-                        </div>
+                        @if (!loadingProject) {
+                            <div class="pad20">
+                                @if (project?.customerId != null) {
+                                    <a class="sb-link" routerLink="/customers/{{project?.customerId}}">{{project?.customerName}}</a>
+                                }
+                                @else {
+                                    No customer
+                                }
+                            </div>
+                        }
                     </app-card>
                 </div>
             </div>
             <br>
 
             <app-card title="Project Details">
-                <div class="pad20" *ngIf="!loadingProject">
-                    <h2>{{project?.name}}</h2>
-                </div>
-                <div class="pad20" *ngIf="loadingProject">
-                    Loading project...
-                </div>
+                @if (!loadingProject) {
+                    <div class="pad20">
+                        <h2>{{project?.name}}</h2>
+                    </div>
+                }
+                @else {
+                    <div class="pad20">
+                        Loading project...
+                    </div>
+                }
             </app-card>
 
         </tab>
@@ -44,42 +60,52 @@
         <tab tabTitle="Documents" tabIcon="fa-solid fa-folder-open">
             <app-card title="Project Documents">
                 <button class="toolbar-btn squared rmar10" (click)="openUploadDocumentModal(uploadDocument)">Upload</button>
-                <div class="pad20" *ngIf="!loadingDocuments && documents != null && documents.length > 0">
-                    <h2>Documents</h2>
+                @if (!loadingDocuments && documents != null && documents.length > 0) {
+                    <div class="pad20">
+                        <h2>Documents</h2>
+    
+                        <table class="table">
+                            <tr>
+                                <th>#ID</th>
+                                <th>Name</th>
+                                <th>Version</th>
+                            </tr>
+                            @for (doc of documents; track doc.id) {
+                                <tr>
+                                    <td>{{doc.id}}</td>
+                                    <td>
+                                        <a class="sb-link" routerLink="/my-projects/{{doc.id}}">{{doc.name}}</a>
+                                    </td>
+                                    <td>
+                                        {{doc.version}}
+                                    </td>
+                                </tr>
+                                
+                            }
+                        </table>
+                    </div>
 
-                    <table class="table">
-                        <tr>
-                            <th>#ID</th>
-                            <th>Name</th>
-                            <th>Version</th>
-                        </tr>
-                        <tr *ngFor="let doc of documents">
-                            <td>{{doc.id}}</td>
-                            <td>
-                                <a class="sb-link" routerLink="/my-projects/{{doc.id}}">{{doc.name}}</a>
-                            </td>
-                            <td>
-                                {{doc.version}}
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="pad20" *ngIf="loadingDocuments">
-                    Loading documents...
-                </div>
-
-                <div class="pad20" *ngIf="!loadingDocuments && documents?.length == 0">
-                    No documents for this project
-                </div>
+                }
+                @else if(loadingDocuments){
+                    <div class="pad20">
+                        Loading documents...
+                    </div>
+                }
+                @else {
+                    <div class="pad20">
+                        No documents for this project
+                    </div>
+                }
             </app-card>
         </tab>
 
         <tab tabTitle="Configuration" tabIcon="fa-solid fa-cog">
-            <app-card title="Project Documents">
-                <div class="pad20" *ngIf="!loadingProject">
-                    <h2>Configuration</h2>
-                </div>
+            <app-card title="Project Configuration">
+                @if (!loadingProject) {
+                    <div class="pad20">
+                        <h2>Configuration</h2>
+                    </div>
+                }
                 
             </app-card>
         </tab>

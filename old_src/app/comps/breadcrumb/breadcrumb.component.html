@@ -1,5 +1,7 @@
 <ol class="sbi-breadcrumb">
-    <li *ngFor="let breadcrumb of breadcrumbs">
-        <a href="breadcrumb.url" hrefActive="router-link-active">{{breadcrumb.label}}</a>
-    </li>
+    @for(breadcrumb of breadcrumbs; track breadcrumb.id){
+        <li>
+            <a href="breadcrumb.url" hrefActive="router-link-active">{{breadcrumb.label}}</a>
+        </li>
+    }
 </ol>

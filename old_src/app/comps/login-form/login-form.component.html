@@ -6,7 +6,9 @@
             <br/>
             <input class="sbi-input" type="password" formControlName="password" placeholder="Password">
             <br/>
-            <button *ngIf="!loading" type="submit" class="sbi-btn-normal">Login</button>
+            @if(!loading){
+                <button type="submit" class="sbi-btn-normal">Login</button>
+            }
         </form>
         <span style="color: red">{{error}}</span>
     </div>

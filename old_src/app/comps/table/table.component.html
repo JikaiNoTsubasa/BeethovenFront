@@ -1,12 +1,18 @@
 <table>
     <tr>
-        <th *ngFor="let header of headers">
-            {{ header }}
-        </th>
+        @for(header of headers; track header.id){
+            <th>
+                {{header}}
+            </th>
+        }
     </tr>
-    <tr *ngFor="let row of outputRows">
-        <td *ngFor="let cell of row">
-            {{ cell }}
-        </td>
-    </tr>
+    @for(row of rows; track row.id){
+        <tr>
+            @for(row of outputRows; track row.id){
+                <td>
+                    {{ cell }}
+                </td>
+            }
+        </tr>
+    }
 </table>

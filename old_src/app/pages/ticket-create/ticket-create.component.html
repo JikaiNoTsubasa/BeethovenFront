@@ -27,7 +27,9 @@
                                         <span>Assign To</span><br>
                                         <select class="sbi-input" formControlName="assignTo">
                                             <option [value]="null">None</option>
-                                            <option *ngFor="let assi of users" [value]="assi.id">{{assi.firstname}} {{assi.lastname}}</option>
+                                            @for(assi of users; track assi.id){
+                                                <option [value]="assi.id">{{assi.firstname}} {{assi.lastname}}</option>
+                                            }
                                         </select>
                                     </td>
                                 </tr>
@@ -36,7 +38,9 @@
                                         <span>Reviewed By</span><br>
                                         <select class="sbi-input" formControlName="reviewedBy">
                                             <option [value]="null">None</option>
-                                            <option *ngFor="let assi of users" [value]="assi.id">{{assi.firstname}} {{assi.lastname}}</option>
+                                            @for(assi of users; track assi.id){
+                                                <option [value]="assi.id">{{assi.firstname}} {{assi.lastname}}</option>
+                                            }
                                         </select>
                                     </td>
                                 </tr>
@@ -45,7 +49,9 @@
                                         <span>Product</span><br>
                                         <select class="sbi-input" formControlName="product">
                                             <option [value]="null">None</option>
-                                            <option *ngFor="let product of products" [value]="product.id">{{product.name}} [{{product.customer?.name}}]</option>
+                                            @for(product of products; track product.id){
+                                                <option [value]="product.id">{{product.name}} [{{product.customer?.name}}]</option>
+                                            }
                                         </select>
                                     </td>
                                 </tr>
@@ -59,13 +65,17 @@
                                     <td>
                                         <span>Priority<span style="color: red;">*</span></span><br>
                                         <select class="sbi-input" formControlName="priorityId">
-                                            <option *ngFor="let prio of priorities" [ngValue]="prio.id">{{prio.id}} - {{prio.name}}</option>
+                                            @for(prio of priorities; track prio.id){
+                                                <option [ngValue]="prio.id">{{prio.id}} - {{prio.name}}</option>
+                                            }
                                         </select>
                                     </td>
                                     <td>
                                         <span>Type<span style="color: red;">*</span></span><br>
                                         <select class="sbi-input" formControlName="typeId">
-                                            <option *ngFor="let type of types" [value]="type.id">{{type.name}}</option>
+                                            @for(type of types; track type.id){
+                                                <option [value]="type.id">{{type.name}}</option>
+                                            }
                                         </select>
                                     </td>
                                 </tr>

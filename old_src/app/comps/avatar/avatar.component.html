@@ -1,8 +1,15 @@
-<span *ngIf="avatar != null && avatar != ''" class="sbi-avatar">
-    <img src="{{avatar}}" [ngStyle]="{width: avatarSize + 'px', height: avatarSize + 'px'}"/>
-    <span *ngIf="showName" style="margin-left: 5px;">
-        {{name}}
+@if (avatar != null && avatar != ''){
+    <span class="sbi-avatar">
+        <img src="{{avatar}}" [ngStyle]="{width: avatarSize + 'px', height: avatarSize + 'px'}"/>
+        @if(showName){
+            <span style="margin-left: 5px;">
+                {{name}}
+            </span>
+        }
+        @if(tooltip != null){
+            <span class="sbi-avatar-tooltip" [innerHTML]="tooltip | sanitizeHtml">
+        }
+        </span>
     </span>
-    <span *ngIf="tooltip != null" class="sbi-avatar-tooltip" [innerHTML]="tooltip | sanitizeHtml">
-    </span>
-</span>
+
+}

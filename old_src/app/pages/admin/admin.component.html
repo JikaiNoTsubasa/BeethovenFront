@@ -10,27 +10,30 @@
                     
                     <app-tabs>
                         <app-tab name="Users">
-                            <div *ngIf="users && users.length > 0">
+                            @if(users && users.length > 0){
                                 <table class="sbi-table">
                                     <tr>
                                         <th style="width:0.1%;white-space: nowrap;">ID</th>
                                         <th>Name</th>
                                         <th>Teams</th>
                                     </tr>
-                                    <tr *ngFor="let user of users">
-                                        <td>{{user.id}}</td>
-                                        <td>
-                                            <app-avatar [user]="user" [avatarSize]="50"></app-avatar>
-                                        </td>
-                                        <td>
-                                            <app-chips [chips]="teamNames(user)"></app-chips>
-                                        </td>
-                                    </tr>
+                                    @for(user of users; track user.id){
+                                        <tr>
+                                            <td>{{user.id}}</td>
+                                            <td>
+                                                <app-avatar [user]="user" [avatarSize]="50"></app-avatar>
+                                            </td>
+                                            <td>
+                                                <app-chips [chips]="teamNames(user)"></app-chips>
+                                            </td>
+                                        </tr>
+                                    }
                                 </table>
-                            </div>
+
+                            }
                         </app-tab>
                         <app-tab name="Tickets">
-                            <div *ngIf="tickets && tickets.length > 0">
+                            @if(tickets && tickets.length > 0){
                                 <div class="grid">
                                     <div class="col-3">
                                         <div class="sbi-dash-item">
@@ -62,12 +65,15 @@
                                         <th>ID</th>
                                         <th>Name</th>
                                     </tr>
-                                    <tr *ngFor="let ticket of tickets">
-                                        <td>{{ticket.id}}</td>
-                                        <td>{{ticket.name}}</td>
-                                    </tr>
+                                    @for(ticket of tickets; track ticket.id){
+                                        <tr>
+                                            <td>{{ticket.id}}</td>
+                                            <td>{{ticket.name}}</td>
+                                        </tr>
+                                    }
                                 </table>
-                            </div>
+                                
+                            }
                         </app-tab>
                         <app-tab name="Customers">
                             <div>
