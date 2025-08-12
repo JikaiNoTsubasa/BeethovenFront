@@ -1,18 +1,39 @@
 <div class="main-menu">
-    <div *ngFor="let item of menuItems; let i = index">
-    <a *ngIf="item.url != null" [routerLink]="item.url"  routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}" class="sbi-menu-section">
-        <i *ngIf="item.icon != null" [class]="item.icon"></i>
-        {{item.name}}
-    </a>
-    <a *ngIf="item.url == null" (click)="toggleSection(i)" class="sbi-menu-section">
-        <i *ngIf="item.icon != null" [class]="item.icon"></i>
-        {{item.name}}
-    </a>
-    <div *ngIf="item.subMenuItems != null && item.subMenuItems.length > 0" [@openClose]="openedIndex === i ? 'open' : 'closed'">
-        <a *ngFor="let subItem of item.subMenuItems" [routerLink]="subItem.url" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}" class="sbi-menu-link">
-            <i *ngIf="subItem.icon != null" [class]="subItem.icon"></i>
-            {{subItem.name}}
-        </a>
-    </div>
-</div>
+    @for(item of menuItems; track item; let i = $index){
+        <div>
+            @if (item.url != null){
+                <a [routerLink]="item.url"  routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}" class="sbi-menu-section">
+                    @if (item.icon != null){
+                        <i [class]="item.icon"></i>
+                    }
+                    {{item.name}}
+                </a>
+
+            }
+            @else{
+                <a (click)="toggleSection(i)" class="sbi-menu-section">
+                    @if (item.icon != null){
+                        <i [class]="item.icon"></i>
+                    }
+                    {{item.name}}
+                </a>
+
+            }
+            @if(item.subMenuItems != null && item.subMenuItems.length > 0){
+                <div [@openClose]="openedIndex === i ? 'open' : 'closed'">
+                    @for(subItem of item.subMenuItems; track subItem){
+                        <a [routerLink]="subItem.url" routerLinkActive="selected" [routerLinkActiveOptions]="{exact: true}" class="sbi-menu-link">
+                            @if (subItem.icon != null){
+                                <i [class]="subItem.icon"></i>
+                            }
+                            {{subItem.name}}
+                        </a>
+
+                    }
+                </div>
+
+            }
+        </div>
+
+    }
 </div>

@@ -4,17 +4,23 @@
             <h1>Beethoven</h1>
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <input #login class="login-input w100" type="text" placeholder="Login" formControlName="login">
-                <div *ngIf="loginForm.get('login')?.errors?.['required'] && loginForm.get('login')?.touched" class="error-message">
-                    Login is required
-                </div>
+                @if(loginForm.get('login')?.errors?.['required'] && loginForm.get('login')?.touched){
+                    <div class="error-message">
+                        Login is required
+                    </div>
+                }
                 <br>
                 <input #password class="login-input w100" type="password" placeholder="Password" formControlName="password">
-                <div *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched" class="error-message">
-                    Password is required
-                </div>
+                @if(loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched){
+                    <div class="error-message">
+                        Password is required
+                    </div>
+                }
                 <br>
                 <select #env class="login-env w100" formControlName="env">
-                    <option *ngFor="let env of envs" [value]="env.url">{{env.name}}</option>
+                    @for(env of envs; track env){
+                        <option [value]="env.url">{{env.name}}</option>
+                    }
                 </select>
                 <div style="text-align: center;">
                     <input class="login-button" type="submit" value="Login" [disabled]="loginForm.invalid">

@@ -1,7 +1,11 @@
 <ul class="sy-tabs">
-    <li *ngFor="let tab of tabs; let i = index" (click)="selectTab(tab)" class="sy-tab" [class.active]="i === activeIdx">
-        <i *ngIf="tab.tabIcon" [class]="tab.tabIcon"></i>
-        {{ tab.tabTitle }}
-    </li>
+    @for(tab of tabs; track tab; let i = $index){
+        <li (click)="selectTab(tab)" class="sy-tab" [class.active]="i === activeIdx">
+            @if(tab.tabIcon){
+                <i [class]="tab.tabIcon"></i>
+            }
+            {{ tab.tabTitle }}
+        </li>
+    }
 </ul>
 <ng-content></ng-content>

@@ -11,54 +11,59 @@
     <div class="grid">
         <div class="col-8">
             <app-card title="User details">
-                <div class="pad20" *ngIf="user">
-                    <div style="display: flex;">
-                        <div>
-                            <img class="avatar" src="icon_user.svg" width="200px" height="200px">
-                            <br>
-                            <div style="text-align: center;">{{user.name}}</div>
-
-                        </div>
-                        <div class="w100 details-box" >
-                            <div class="grid details-block">
-                                <div class="col-6">
-                                    <div>
-                                        <span class="bold">ID:</span><br>
-                                        {{user.id}}
+                @if(user){
+                    <div class="pad20">
+                        <div style="display: flex;">
+                            <div>
+                                <img class="avatar" src="icon_user.svg" width="200px" height="200px">
+                                <br>
+                                <div style="text-align: center;">{{user.name}}</div>
+    
+                            </div>
+                            <div class="w100 details-box" >
+                                <div class="grid details-block">
+                                    <div class="col-6">
+                                        <div>
+                                            <span class="bold">ID:</span><br>
+                                            {{user.id}}
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div>
+                                            <span class="bold">Email:</span><br>
+                                            {{user.email}}
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-6">
-                                    <div>
-                                        <span class="bold">Email:</span><br>
-                                        {{user.email}}
+                                <div class="grid">
+                                    <div class="col-6">
+                                        <div>
+                                            <span class="bold">Last connection:</span><br>
+                                            {{user.lastConnection | date: 'dd/MM/yyyy HH:mm'}}
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div>
+                                            <span class="bold">Can log in:</span><br>
+                                            <i [ngClass]="{
+                                            'fa-solid': true,
+                                            'fa-circle-check sb-green': user.canLogin,
+                                            'fa-circle-xmark sb-red': !user.canLogin
+                                            }"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="grid">
-                                <div class="col-6">
-                                    <div>
-                                        <span class="bold">Last connection:</span><br>
-                                        {{user.lastConnection | date: 'dd/MM/yyyy HH:mm'}}
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div>
-                                        <span class="bold">Can log in:</span><br>
-                                        <i [ngClass]="{
-                                        'fa-solid': true,
-                                        'fa-circle-check sb-green': user.canLogin,
-                                        'fa-circle-xmark sb-red': !user.canLogin
-                                        }"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- end flex -->
+                        </div><!-- end flex -->
+    
+                    </div>
 
-                </div>
-                <div class="pad20" *ngIf="!user">
-                    <p>Loading user...</p>
-                </div>
+                }
+                @else {
+                    <div class="pad20">
+                        <p>Loading user...</p>
+                    </div>
+                }
             </app-card>
         </div>
 
@@ -71,10 +76,12 @@
                             <th>Code</th>
                             <th>Level</th>
                         </tr>
-                        <tr *ngFor="let role of roles">
-                            <td>{{role.code}}</td>
-                            <td>{{role.level}}</td>
-                        </tr>
+                        @for(role of roles; track role.code){
+                            <tr>
+                                <td>{{role.code}}</td>
+                                <td>{{role.level}}</td>
+                            </tr>
+                        }
                     </table>
                 </div>
             </app-card>

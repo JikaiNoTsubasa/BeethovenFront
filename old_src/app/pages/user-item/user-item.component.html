@@ -5,21 +5,23 @@
         <h1>Tickets</h1>
         <div class="grid">
             <div class="col-12">
-                <div *ngIf="user" class="sbi-card">
-                    <h2>{{user.name}}</h2>
-                    <table>
-                        <tr>
-                            <td>
-                                <img [src]="user.avatar" [width]="250" [height]="250" />
-                            </td>
-                            <td style="vertical-align: top;">
-                                {{user.name}}<br>
-                                {{user.email}}<br>
-                            </td>
-                        </tr>
-                    </table>
-
-                </div>
+                @if(user){
+                    <div class="sbi-card">
+                        <h2>{{user.name}}</h2>
+                        <table>
+                            <tr>
+                                <td>
+                                    <img [src]="user.avatar" [width]="250" [height]="250" />
+                                </td>
+                                <td style="vertical-align: top;">
+                                    {{user.name}}<br>
+                                    {{user.email}}<br>
+                                </td>
+                            </tr>
+                        </table>
+    
+                    </div>
+                }
             </div>
 
         

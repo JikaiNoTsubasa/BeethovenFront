@@ -10,9 +10,11 @@
                             <div class="pad20">
                                 @if (phases != null && phases.length > 0) {
                                     <div class="phase-container">
-                                        <div [class]="phase.id == project?.currentPhaseId ? 'phase-item phase-current' : 'phase-item'" *ngFor="let phase of phases">
-                                                {{phase.name}}
-                                        </div>
+                                        @for(phase of phases; track phase.id){
+                                            <div [class]="phase.id == project?.currentPhaseId ? 'phase-item phase-current' : 'phase-item'">
+                                                    {{phase.name}}
+                                            </div>
+                                        }
                                     </div>
                                 }
                                 @else {

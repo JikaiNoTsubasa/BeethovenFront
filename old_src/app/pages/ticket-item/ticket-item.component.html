@@ -5,63 +5,80 @@
         <h1>Tickets</h1>
         <div class="grid">
             <div class="col-8">
-                <div *ngIf="ticket" class="sbi-card">
-                    <h2>{{ticket.name}}</h2>
-                    <div style="margin-top: 20px;" [innerHTML]="ticket.description | descriptionMK">
+                @if(ticket){
+                    <div class="sbi-card">
+                        <h2>{{ticket.name}}</h2>
+                        <div style="margin-top: 20px;" [innerHTML]="ticket.description | descriptionMK">
+                        </div>
                     </div>
-
-                </div>
+                }
             </div>
 
             <div class="col-4">
-                <div *ngIf="ticket" class="sbi-card">
-                    <h2>Users</h2>
-                    <div style="margin-top: 20px;">
-                        Assignee:<br>
-                        <span *ngIf="!ticket.assignedTo">No Reviewer</span>
-                        <app-avatar *ngIf="ticket.assignedTo"
-                            [user]="ticket.assignedTo"
-                            [avatarSize]="50">
-                        </app-avatar>
-                        <br><br>
-                        Reviewer:<br>
-                        <span *ngIf="!ticket.reviewedBy">No Reviewer</span>
-                        <app-avatar *ngIf="ticket.reviewedBy"
-                            [user]="ticket.reviewedBy"
-                            [avatarSize]="50">
-                        </app-avatar>
+                @if(ticket){
+                    <div class="sbi-card">
+                        <h2>Users</h2>
+                        <div style="margin-top: 20px;">
+                            Assignee:<br>
+                            @if(ticket.assignedTo){
+                                <app-avatar
+                                    [user]="ticket.assignedTo"
+                                    [avatarSize]="50">
+                                </app-avatar>
+                                
+                            }
+                            @else{
+                                <span>No Assignee</span>
+                            }
+                            <br><br>
+                            Reviewer:<br>
+                            @if(ticket.reviewedBy){
+                                <app-avatar 
+                                    [user]="ticket.reviewedBy"
+                                    [avatarSize]="50">
+                                </app-avatar>
+
+                            }
+                            @else{
+                                <span>No Reviewer</span>
+                            }
+                        </div>
                     </div>
-
-                </div>
+                }
             </div>
-
             
         </div>
         <div class="grid">
             <div class="col-12">
-                <div *ngIf="ticket" class="sbi-card">
-                    <h2>Activities</h2>
-                    <div style="margin-top: 20px;">
-                        <table style="width: 100%;">
-                            <tr *ngFor="let activity of ticket.activities">
-                                <td class="sbi-activity-col1">
-                                    <app-avatar 
-                                        [user]="activity.user"
-                                        [avatarSize]="50">
-                                    </app-avatar><br>
-                                    <span class="sbi-activity-date">
-                                        {{activity.createdAt | date: 'dd/MM/yyyy HH:mm'}}
-                                    </span>
-                                </td>
-                                <td class="sbi-activity-message">
-                                    <span [innerHTML]="activity.message | descriptionMK">
-                                    </span>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+                @if(ticket){
+                    <div class="sbi-card">
+                        <h2>Activities</h2>
+                        <div style="margin-top: 20px;">
+                            <table style="width: 100%;">
+                                @for(activity of ticket.activities; track activity.id){
+                                    <tr>
+                                        <td class="sbi-activity-col1">
+                                            <app-avatar 
+                                                [user]="activity.user"
+                                                [avatarSize]="50">
+                                            </app-avatar><br>
+                                            <span class="sbi-activity-date">
+                                                {{activity.createdAt | date: 'dd/MM/yyyy HH:mm'}}
+                                            </span>
+                                        </td>
+                                        <td class="sbi-activity-message">
+                                            <span [innerHTML]="activity.message | descriptionMK">
+                                            </span>
+                                        </td>
+                                    </tr>
 
-                </div>
+                                }
+                            </table>
+                        </div>
+    
+                    </div>
+                    
+                }
             </div>
         </div>
         

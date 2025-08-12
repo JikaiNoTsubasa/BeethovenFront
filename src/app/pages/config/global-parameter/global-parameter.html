@@ -4,31 +4,42 @@
     <div class="grid">
         <div class="col-12">
             <app-card title="Global parameters">
-                <div class="pad20" *ngIf="parameters">
+                @if(parameters){
+                    <div class="pad20">
+    
+                        @for(param of params | keyvalue; track param.key){
+                            <div>
+                                <div class="group">{{param.key}}</div>
+                                <table class="table">
+                                    <tr>
+                                        <th>#ID</th>
+                                        <th>Code</th>
+                                        <th>Value</th>
+                                        <th>Type</th>
+                                    </tr>
+                                    @for(parameter of param.value; track parameter){
+                                        <tr>
+                                            <td>{{parameter.id}}</td>
+                                            <td>{{parameter.code}}</td>
+                                            <td>
+                                                <input-text-live [param]="parameter.value" (paramChange)="onParamChange($event, parameter.code)"></input-text-live>
+                                            </td>
+                                            <td>{{parameter.type}}</td>
+                                        </tr>
 
-                    <div *ngFor="let param of params | keyvalue">
-                        <div class="group">{{param.key}}</div>
-                        <table class="table">
-                            <tr>
-                                <th>#ID</th>
-                                <th>Code</th>
-                                <th>Value</th>
-                                <th>Type</th>
-                            </tr>
-                            <tr *ngFor="let parameter of param.value">
-                                <td>{{parameter.id}}</td>
-                                <td>{{parameter.code}}</td>
-                                <td>
-                                    <input-text-live [param]="parameter.value" (paramChange)="onParamChange($event, parameter.code)"></input-text-live>
-                                </td>
-                                <td>{{parameter.type}}</td>
-                            </tr>
-                        </table>
+                                    }
+                                </table>
+                            </div>
+
+                        }
                     </div>
-                </div>
-                <div class="pad20" *ngIf="!parameters">
-                    <p>Loading parameters...</p>
-                </div>
+
+                }
+                @else {
+                    <div class="pad20">
+                        <p>Loading parameters...</p>
+                    </div>
+                }
             </app-card>
         </div>
     </div>
