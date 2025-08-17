@@ -9,6 +9,7 @@ import { Project } from "../models/dto/Project";
 import { Document } from "../models/dto/Document";
 import { Customer } from "../models/dto/Customer";
 import { ProjectPhase } from "../models/dto/ProjectPhase";
+import { ProjectTask } from "../models/dto/ProjectTask";
 
 @Injectable({
     providedIn: "root",
@@ -86,6 +87,10 @@ export class DBService {
 
     fetchProjectPhases(id: number): Observable<ProjectPhase[]> {
         return this.http.get<ProjectPhase[]>(this.getEnvUrl() + '/api/projects/' + id + '/phases');
+    }
+
+    fetchProjectTasks(projectId: number): Observable<ProjectTask[]> {
+        return this.http.get<ProjectTask[]>(this.getEnvUrl() + '/api/projects/' + projectId + '/tasks');
     }
     //#endregion
 

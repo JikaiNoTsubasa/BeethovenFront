@@ -9,6 +9,7 @@ import { Tabs } from "../../../comps/tabs/tabs";
 import { Tab } from '../../../comps/tab/tab';
 import { PopupService } from '../../../services/PopupService';
 import { ProjectPhase } from '../../../models/dto/ProjectPhase';
+import { ProjectTask } from '../../../models/dto/ProjectTask';
 
 @Component({
   selector: 'app-my-project-details',
@@ -33,6 +34,9 @@ export class MyProjectDetails {
 
   currentId: number | null = null;
 
+  tasks: ProjectTask[] | null = null;
+  loadingTasks: boolean = false;
+
   ngOnInit(){
     this.refreshProject();
   }
@@ -51,6 +55,7 @@ export class MyProjectDetails {
         complete: () => {
           this.loadingProject = false;
           this.refreshPhases();
+          this.refreshProjectTasks();
         }
       });
     })
@@ -85,6 +90,23 @@ export class MyProjectDetails {
         },
         complete: () => {
           this.loadingPhases = false;
+        }
+      });
+    }
+  }
+
+  refreshProjectTasks(){
+    if (this.currentId){
+      this.loadingTasks = true;
+      this.dbService.fetchProjectTasks(this.currentId).subscribe({
+        next: (tasks) => {
+          this.tasks = tasks;
+        },
+        error: (error) => {
+          console.error(error);
+        },
+        complete: () => {
+          this.loadingTasks = false;
         }
       });
     }
