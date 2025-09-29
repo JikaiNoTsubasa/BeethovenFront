@@ -10,6 +10,7 @@ import { Document } from "../models/dto/Document";
 import { Customer } from "../models/dto/Customer";
 import { ProjectPhase } from "../models/dto/ProjectPhase";
 import { ProjectTask } from "../models/dto/ProjectTask";
+import { ProjectPermission } from "../models/dto/ProjectPermission";
 
 @Injectable({
     providedIn: "root",
@@ -69,6 +70,14 @@ export class DBService {
 
     fetchMyProject(id: number): Observable<Project> {
         return this.http.get<Project>(this.getEnvUrl() + '/api/my-projects/' + id);
+    }
+
+    fetchMyProjectPermissions(id: number): Observable<ProjectPermission[]> {
+        return this.http.get<ProjectPermission[]>(this.getEnvUrl() + '/api/my-projects/' + id + '/permissions');
+    }
+
+    fetchProjectPermissions(id: number): Observable<ProjectPermission[]> {
+        return this.http.get<ProjectPermission[]>(this.getEnvUrl() + '/api/projects/' + id + '/permissions');
     }
 
     fetchProjectDocuments(id: number): Observable<Document[]> {

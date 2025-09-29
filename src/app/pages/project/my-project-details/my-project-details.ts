@@ -10,6 +10,7 @@ import { Tab } from '../../../comps/tab/tab';
 import { PopupService } from '../../../services/PopupService';
 import { ProjectPhase } from '../../../models/dto/ProjectPhase';
 import { ProjectTask } from '../../../models/dto/ProjectTask';
+import { ProjectPermission } from '../../../models/dto/ProjectPermission';
 
 @Component({
   selector: 'app-my-project-details',
@@ -37,6 +38,9 @@ export class MyProjectDetails {
   tasks: ProjectTask[] | null = null;
   loadingTasks: boolean = false;
 
+  myPermissions: ProjectPermission | null = null;
+  projectPermissions: ProjectPermission[] | null = null;
+
   ngOnInit(){
     this.refreshProject();
   }
@@ -56,6 +60,7 @@ export class MyProjectDetails {
           this.loadingProject = false;
           this.refreshPhases();
           this.refreshProjectTasks();
+          this.refreshMyPermissions();
         }
       });
     })
@@ -112,9 +117,40 @@ export class MyProjectDetails {
     }
   }
 
+  refreshMyPermissions(){
+    if (this.currentId){
+      this.dbService.fetchMyProjectPermissions(this.currentId).subscribe({
+        next: (permissions) => {
+          this.myPermissions = permissions[0];
+        },
+        error: (error) => {
+          console.error(error);
+        }
+      });
+    }
+  }
+
+  refreshProjectPermissions(){
+    if (this.currentId){
+      this.dbService.fetchProjectPermissions(this.currentId).subscribe({
+        next: (permissions) => {
+          this.projectPermissions = permissions;
+        },
+        error: (error) => {
+          console.error(error);
+        }
+      });
+    }
+  }
+
   onTabChange(tab: string) {
-    if (tab === 'Documents') {
-      this.refreshProjectDocuments();
+    switch (tab) {
+      case 'Documents':
+        this.refreshProjectDocuments();
+        break;
+      case 'Configuration':
+        this.refreshProjectPermissions();
+        break;
     }
   }
 

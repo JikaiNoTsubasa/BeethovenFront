@@ -1,172 +1,229 @@
 <div class="page">
-    <h1>Project</h1>
+    <h1>{{project?.name ?? 'Project'}}</h1>
 
-    <tabs (onTabChange)="onTabChange($event)">
-        <tab tabTitle="Overview" tabIcon="fa-solid fa-book-open">
-            <app-card title="Project Details">
-                @if (!loadingProject) {
-                    <div class="pad20">
-
-                        <h2>#{{project?.id}} - {{project?.name}}</h2>
-
-                        @if (phases != null && phases.length > 0) {
-                            <div class="phase-container">
-                                @for(phase of phases; track phase.id){
-                                    <div [class]="phase.id == project?.currentPhaseId ? 'phase-item phase-current' : 'phase-item'">
-                                            {{phase.name}}
+    @if(
+        myPermissions != null &&
+        myPermissions.canRead
+    ){
+        <tabs (onTabChange)="onTabChange($event)">
+            <tab tabTitle="Overview" tabIcon="fa-solid fa-book-open">
+                <app-card [title]="'Project Details (#' + project?.id + ')'">
+                    @if (!loadingProject) {
+                        <div class="pad20">
+    
+                            @if (phases != null && phases.length > 0) {
+                                <div class="phase-container">
+                                    @for(phase of phases; track phase.id){
+                                        <div [class]="phase.id == project?.currentPhaseId ? 'phase-item phase-current' : 'phase-item'">
+                                                {{phase.name}}
+                                        </div>
+                                    }
+                                </div>
+                                <br><br>
+                            }
+                            @else {
+                                <span>
+                                    No phases in this project
+                                </span>
+                            }
+                            
+                            @if (project?.customerId != null) {
+                                <span>Customer: </span>
+                                <a class="sb-link" routerLink="/customers/{{project?.customerId}}">{{project?.customerName}}</a>
+                            }
+                            @else {
+                                No customer
+                            }
+                        </div>
+                    }
+                    @else {
+                        <div class="pad20">
+                            Loading project...
+                        </div>
+                    }
+                </app-card>
+                <br>
+    
+                <app-card title="Project Tasks">
+                    @if (!loadingProject) {
+                        <div class="pad20">
+        
+                            <table class="table">
+                                <tr>
+                                    <th colspan="2">
+                                        <button class="toolbar-btn squared rmar10 w100"><i class="fa-solid fa-plus"></i></button>
+                                    </th>
+                                    <th>#ID</th>
+                                    <th>Name</th>
+                                    <th>Status</th>
+                                    <th>Priority</th>
+                                    <th>Type</th>
+                                    <th>Start - End</th>
+                                    <th>Created At</th>
+                                    <th>Assigned To</th>
+                                </tr>
+                                @for (task of tasks; track task.id) {
+                                    <tr>
+                                        <td style="text-align: center;">
+                                            <i class="fa-solid fa-gear"></i>
+                                        </td>
+                                        <td style="text-align: center;">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </td>
+                                        <td>{{task.id}}</td>
+                                        <td>
+                                            <a class="sb-link" routerLink="/tasks/{{task.id}}">{{task.name}}</a>
+                                        </td>
+                                        <td>
+                                            {{task.status}}
+                                        </td>
+                                        <td>
+                                            {{task.priority}}
+                                        </td>
+                                        <td>
+                                            {{task.type}}
+                                        </td>
+                                        <td>
+                                            @if(task.startDate != null || task.endDate != null){
+                                                {{task.startDate | date: 'dd/MM/yyyy'}} - {{task.endDate | date: 'dd/MM/yyyy'}}
+    
+                                            }
+                                        </td>
+                                        <td>
+                                            {{task.createdAt | date: 'dd/MM/yyyy HH:mm'}}
+                                        </td>
+                                        <td>
+                                            @if(task.assignees != null && task.assignees.length > 0) {
+                                                @for(assignee of task.assignees; track assignee.id){
+                                                    {{assignee.name}},
+                                                }
+                                            }
+                                            @else{
+                                                <span>Unassigned</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    }
+                    @else {
+                        <div class="pad20">
+                            Loading project...
+                        </div>
+                    }
+                </app-card>
+    
+            </tab>
+    
+            @if (myPermissions != null && myPermissions.canUpdate) {
+                <tab tabTitle="Documents" tabIcon="fa-solid fa-folder-open">
+                    <app-card title="Project Documents">
+                        <button class="toolbar-btn squared rmar10" (click)="openUploadDocumentModal(uploadDocument)">Upload</button>
+                        @if (!loadingDocuments && documents != null && documents.length > 0) {
+                            <div class="pad20">
+                                <h2>Documents</h2>
+            
+                                <table class="table">
+                                    <tr>
+                                        <th>#ID</th>
+                                        <th>Name</th>
+                                        <th>Version</th>
+                                    </tr>
+                                    @for (doc of documents; track doc.id) {
+                                        <tr>
+                                            <td>{{doc.id}}</td>
+                                            <td>
+                                                <a class="sb-link" routerLink="/my-projects/{{doc.id}}">{{doc.name}}</a>
+                                            </td>
+                                            <td>
+                                                {{doc.version}}
+                                            </td>
+                                        </tr>
+                                        
+                                    }
+                                </table>
+                            </div>
+        
+                        }
+                        @else if(loadingDocuments){
+                            <div class="pad20">
+                                Loading documents...
+                            </div>
+                        }
+                        @else {
+                            <div class="pad20">
+                                No documents for this project
+                            </div>
+                        }
+                    </app-card>
+                </tab>
+            }
+    
+            @if (myPermissions != null && myPermissions.canConfigure) {
+                <tab tabTitle="Configuration" tabIcon="fa-solid fa-cog">
+                    <div class="grid">
+                        <div class="col-8">
+                            <app-card title="Project Configuration">
+                                @if (!loadingProject) {
+                                    <div class="pad20">
+                                        <h2>Owner</h2>
+                                        <a class="sb-link" routerLink="/users/{{project?.ownerId}}">{{project?.ownerName}}</a>
+                                        
+                                        <h2>Manage project permissions</h2>
+                                        <table class="table">
+                                            <tr>
+                                                <th>User</th>
+                                                <th>Read</th>
+                                                <th>Update</th>
+                                                <th>Create Tasks</th>
+                                                <th>Configure</th>
+                                            </tr>
+                                            @for (permission of projectPermissions; track permission.id) {
+                                                <tr>
+                                                    <td>{{permission.userName}}</td>
+                                                    <td>{{permission.canRead}}</td>
+                                                    <td>{{permission.canUpdate}}</td>
+                                                    <td>{{permission.canCreateTasks}}</td>
+                                                    <td>{{permission.canConfigure}}</td>
+                                                </tr>
+                                            }
+                                        </table>
                                     </div>
                                 }
-                            </div>
-                            <br><br>
-                        }
-                        @else {
-                            <span>
-                                No phases in this project
-                            </span>
-                        }
-                        
-                        @if (project?.customerId != null) {
-                            <a class="sb-link" routerLink="/customers/{{project?.customerId}}">{{project?.customerName}}</a>
-                        }
-                        @else {
-                            No customer
-                        }
-                    </div>
-                }
-                @else {
-                    <div class="pad20">
-                        Loading project...
-                    </div>
-                }
-            </app-card>
-            <br>
-
-            <app-card title="Project Tasks">
-                @if (!loadingProject) {
-                    <div class="pad20">
-                        <h2>Tasks</h2>
-    
-                        <table class="table">
-                            <tr>
-                                <th colspan="2">
-                                    <button class="toolbar-btn squared rmar10 w100"><i class="fa-solid fa-plus"></i></button>
-                                </th>
-                                <th>#ID</th>
-                                <th>Name</th>
-                                <th>Status</th>
-                                <th>Priority</th>
-                                <th>Type</th>
-                                <th>Start - End</th>
-                                <th>Created At</th>
-                                <th>Assigned To</th>
-                            </tr>
-                            @for (task of tasks; track task.id) {
-                                <tr>
-                                    <td style="text-align: center;">
-                                        <i class="fa-solid fa-gear"></i>
-                                    </td>
-                                    <td style="text-align: center;">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </td>
-                                    <td>{{task.id}}</td>
-                                    <td>
-                                        <a class="sb-link" routerLink="/tasks/{{task.id}}">{{task.name}}</a>
-                                    </td>
-                                    <td>
-                                        {{task.status}}
-                                    </td>
-                                    <td>
-                                        {{task.priority}}
-                                    </td>
-                                    <td>
-                                        {{task.type}}
-                                    </td>
-                                    <td>
-                                        @if(task.startDate != null || task.endDate != null){
-                                            {{task.startDate | date: 'dd/MM/yyyy'}} - {{task.endDate | date: 'dd/MM/yyyy'}}
-
-                                        }
-                                    </td>
-                                    <td>
-                                        {{task.createdAt | date: 'dd/MM/yyyy HH:mm'}}
-                                    </td>
-                                    <td>
-                                        @if(task.assignees != null && task.assignees.length > 0) {
-                                            @for(assignee of task.assignees; track assignee.id){
-                                                {{assignee.name}},
-                                            }
-                                        }
-                                        @else{
-                                            <span>Unassigned</span>
-                                        }
-                                    </td>
-                                </tr>
-                            }
-                        </table>
-                    </div>
-                }
-                @else {
-                    <div class="pad20">
-                        Loading project...
-                    </div>
-                }
-            </app-card>
-
-        </tab>
-
-        <tab tabTitle="Documents" tabIcon="fa-solid fa-folder-open">
-            <app-card title="Project Documents">
-                <button class="toolbar-btn squared rmar10" (click)="openUploadDocumentModal(uploadDocument)">Upload</button>
-                @if (!loadingDocuments && documents != null && documents.length > 0) {
-                    <div class="pad20">
-                        <h2>Documents</h2>
-    
-                        <table class="table">
-                            <tr>
-                                <th>#ID</th>
-                                <th>Name</th>
-                                <th>Version</th>
-                            </tr>
-                            @for (doc of documents; track doc.id) {
-                                <tr>
-                                    <td>{{doc.id}}</td>
-                                    <td>
-                                        <a class="sb-link" routerLink="/my-projects/{{doc.id}}">{{doc.name}}</a>
-                                    </td>
-                                    <td>
-                                        {{doc.version}}
-                                    </td>
-                                </tr>
                                 
-                            }
-                        </table>
-                    </div>
+                            </app-card>
 
-                }
-                @else if(loadingDocuments){
-                    <div class="pad20">
-                        Loading documents...
+                        </div>
+                        <div class="col-4">
+                            <app-card title="Information">
+                                <div class="pad20">
+                                    <p>
+                                        <b>READ:</b> User can see the project and its details.
+                                    </p>
+                                    <p>
+                                        <b>UPDATE:</b> User can update the project.
+                                    </p>
+                                    <p>
+                                        <b>CREATE TASKS:</b> User can create tasks for the project.
+                                    </p>
+                                    <p>
+                                        <b>CONFIGURE:</b> User can configure the project.
+                                    </p>
+                                </div>
+                            </app-card>
+                        </div>
                     </div>
-                }
-                @else {
-                    <div class="pad20">
-                        No documents for this project
-                    </div>
-                }
-            </app-card>
-        </tab>
+                </tab>
+            }
+        </tabs>
 
-        <tab tabTitle="Configuration" tabIcon="fa-solid fa-cog">
-            <app-card title="Project Configuration">
-                @if (!loadingProject) {
-                    <div class="pad20">
-                        <h2>Configuration</h2>
-                    </div>
-                }
-                
-            </app-card>
-        </tab>
-    </tabs>
+    }
+    @else {
+        <div class="pad20">
+            You don't have access to this project
+        </div>
+    }
 
 </div>
 
